@@ -21,6 +21,7 @@ keys = [
 	Key([mod, "control"], "l", lazy.layout.grow()),
 	Key([mod, "control"], "h", lazy.layout.shrink()),
 	Key([mod], "f", lazy.window.toggle_fullscreen()),
+    Key([mod, "shift"], "f", lazy.window.toggle_floating()),
 
     Key([mod], "i", lazy.next_layout()),
     Key([mod], "u", lazy.prev_layout()),
@@ -36,7 +37,8 @@ keys = [
     Key([mod, "control"], "r", lazy.restart()),
     Key([mod], "BackSpace", lazy.spawn('prompt "Shutdown?" "sudo shutdown -h now"')),
     Key([mod, "shift"], "BackSpace", lazy.spawn('sysact')),
-    Key([mod, "control"], "BackSpace", lazy.shutdown()),
+    Key([mod, "control"], "BackSpace", lazy.spawn('prompt "Exit qtile?" "qtile-cmd -o cmd -f shutdown"')),
+    Key([mod], "Pause", lazy.spawn("lockscreen")),
 
     #Volume control
     Key([], 'XF86AudioRaiseVolume', lazy.spawn('amixer -q -D pulse sset Master 5%+')),
@@ -53,6 +55,11 @@ keys = [
     #Screen Brightness control
     Key([], 'XF86MonBrightnessUp',   lazy.spawn('xbacklight -inc 10')),
     Key([], 'XF86MonBrightnessDown', lazy.spawn('xbacklight -dec 10')),
+    
+    #External commands
+    Key([mod], 'F2', lazy.spawn('dmenumount')),
+    Key([mod, 'shift'], 'F2', lazy.spawn('dmenuumount')),
+    Key([mod], 'F3', lazy.spawn('screenshot')),
     
     Key([mod], 'x', lazy.run_extension(extension.CommandSet(
     commands={
@@ -115,7 +122,7 @@ group_layouts = [
 
 #Aplicações que devem ser abertas naquele grupo
 group_matches = [
-    [Match(wm_class=["Subl", "Code", "Atom"])],
+    [Match(wm_class=["Subl3", "Code", "Atom"])],
     None, None, None,
     None, None, None,
     None, None, None,
@@ -314,7 +321,7 @@ wmname = "LG3D"
 
 #============= Startup =================
 @hook.subscribe.startup_once
-def startup():
+def startup_once():
     from datetime import datetime
 
     startup_file = os.path.expanduser('~/.config/qtile/startup.sh')
@@ -329,3 +336,4 @@ def startup():
 @hook.subscribe.startup
 def startup():
     bottomBar.show(False)
+    lazy.group['w'].toscreen()
