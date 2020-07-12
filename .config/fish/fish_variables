@@ -13,6 +13,7 @@ SETUVAR _fish_abbr_gpl:git\x20pull
 SETUVAR _fish_abbr_gps:git\x20push
 SETUVAR _fish_abbr_gs:git\x20status
 SETUVAR _fish_abbr_sdn:sudo\x20shutdown\x20\x2dh\x20now
+SETUVAR _fish_abbr_srn:sudo\x20shutdown\x20\x2dr\x20now
 SETUVAR fish_color_autosuggestion:555\x1ebrblack
 SETUVAR fish_color_cancel:\x2dr
 SETUVAR fish_color_command:005fd7

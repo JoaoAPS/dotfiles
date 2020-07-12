@@ -38,11 +38,22 @@ keys = [
     Key([mod, "shift"], "BackSpace", lazy.spawn('sysact')),
     Key([mod, "control"], "BackSpace", lazy.shutdown()),
 
-    #Audio control
-    Key([], 'XF86AudioRaiseVolume', lazy.spawn('pulseaudio-ctl up 5')),
-    Key([], 'XF86AudioLowerVolume', lazy.spawn('pulseaudio-ctl down 5')),
+    #Volume control
+    Key([], 'XF86AudioRaiseVolume', lazy.spawn('amixer -q -D pulse sset Master 5%+')),
+    Key([], 'XF86AudioLowerVolume', lazy.spawn('amixer -q -D pulse sset Master 5%-')),
     Key([], 'XF86AudioMute', lazy.spawn('amixer set Master toggle')),
-
+    Key([mod], 'equal', lazy.spawn('amixer -q -D pulse sset Master 5%+')),
+    Key([mod], 'minus', lazy.spawn('amixer -q -D pulse sset Master 5%-')),
+    Key([mod, "shift"], 'minus', lazy.spawn('amixer set Master toggle')),
+    #Music control
+    Key([mod], "p", lazy.spawn("playerctl play-pause")),
+    Key([mod], "period", lazy.spawn("playerctl next")),
+    Key([mod], "comma", lazy.spawn("playerctl previous")),
+    
+    #Screen Brightness control
+    Key([], 'XF86MonBrightnessUp',   lazy.spawn('xbacklight -inc 10')),
+    Key([], 'XF86MonBrightnessDown', lazy.spawn('xbacklight -dec 10')),
+    
     Key([mod], 'x', lazy.run_extension(extension.CommandSet(
     commands={
             'brave': 'brave',
@@ -51,6 +62,45 @@ keys = [
             #'calculator': 'gnome-calculator',
         },
     ))),
+]
+
+
+#============= Layouts =================
+layouts = [
+    layout.MonadTall(
+        ratio=0.63,
+        border_normal="#000000",
+        border_focus="#0000ff",
+        margin=5,
+        border_width=2,
+        single_margin=0,
+        single_border_width=0,
+        new_at_current=True,
+        name="monad"
+    ),
+    layout.MonadTall(
+        ratio=0.63,
+        border_normal="#000000",
+        border_focus="#0000ff",
+        margin=0,
+        border_width=2,
+        single_margin=0,
+        single_border_width=0,
+        new_at_current=True,
+        name="monad_nogaps"
+    ),
+    layout.RatioTile(),
+    # layout.Tile(),
+    layout.Max(),
+    # layout.Stack(num_stacks=2),
+    # Try more layouts by unleashing below layouts.
+    # layout.Bsp(),
+    # layout.Columns(),
+    # layout.Matrix(),
+    # layout.MonadWide(),
+    # layout.TreeTab(),
+    # layout.VerticalTile(),
+    # layout.Zoomy(),
 ]
 
 #============= Groups =================
@@ -114,44 +164,6 @@ keys.extend([
 ])
 
 
-#============= Layouts =================
-layouts = [
-    layout.MonadTall(
-    	ratio=0.63,
-    	border_normal="#000000",
-    	border_focus="#0000ff",
-    	margin=5,
-    	border_width=2,
-    	single_margin=0,
-    	single_border_width=0,
-    	new_at_current=True,
-    	name="monad"
-    ),
-    layout.MonadTall(
-    	ratio=0.63,
-    	border_normal="#000000",
-    	border_focus="#0000ff",
-    	margin=0,
-    	border_width=2,
-    	single_margin=0,
-    	single_border_width=0,
-    	new_at_current=True,
-    	name="monad_nogaps"
-    ),
-    layout.RatioTile(),
-    # layout.Tile(),
-    layout.Max(),
-    # layout.Stack(num_stacks=2),
-    # Try more layouts by unleashing below layouts.
-    # layout.Bsp(),
-    # layout.Columns(),
-    # layout.Matrix(),
-    # layout.MonadWide(),
-    # layout.TreeTab(),
-    # layout.VerticalTile(),
-    # layout.Zoomy(),
-]
-
 #============= Bars =================
 widget_defaults = dict(
     font='ubuntu',
@@ -173,7 +185,6 @@ topBar = bar.Bar(
         ),
         widget.Prompt(),
         widget.Spacer(),
-        widget.Systray(),
         widget.Pomodoro(
             color_inactive='#222222',
             prefix_inactive=''
@@ -220,7 +231,6 @@ topBar = bar.Bar(
             fontsize=15,
             update_interval=15
         ),
-        #widget.QuickExit(),
     ],
     25,
     background="#151722",
@@ -229,10 +239,23 @@ topBar = bar.Bar(
 
 bottomBar = bar.Bar(
     [
-        widget.Volume(),
+        widget.CurrentLayout (),
+        widget.CapsNumLockIndicator(),
+        widget.CheckUpdates(
+            colour_no_updates="#909090",
+            colour_have_updates="#74d4cd",
+            execute="sudo pacman -Syuu",
+            update_interval=12*3600
+        ),
+        widget.Spacer(),
+        widget.Clipboard(
+            update_interval=1,
+        ),
+        widget.Systray(),
+        widget.QuickExit(),
     ],
     25,
-    background="#151722",
+    background="#474a5c",#"#151722",
     opacity=1
 )
 
