@@ -5,7 +5,6 @@
 	],
 	"installed_packages":
 	[
-		"A File Icon",
 		"AdvancedNewFile",
 		"Anaconda",
 		"Babel",
@@ -24,7 +23,6 @@
 		"Monokai Extended",
 		"Package Control",
 		"Seti_UI",
-		"SideBarEnhancements",
-		"SublimeREPL"
+		"SideBarEnhancements"
 	]
 }
