@@ -33,7 +33,7 @@ abbr -ag gps 'git push'
 
 #Encurtadores
 abbr sdn 'sudo shutdown -h now'
-abbr srn 'sudo shutdown -h now'
+abbr srn 'sudo shutdown -r now'
 
 #Facilitadores de memorização
 alias html2pdf 'wkhtmltopdf'
