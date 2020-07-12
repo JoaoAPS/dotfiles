@@ -1,0 +1,19 @@
+// Place your key bindings in this file to override the defaults
+[
+  {
+    "key": "alt+[Semicolon]",
+    "command": "cursorRight",
+    "when": "textInputFocus"
+  },
+  
+  //Center editor
+  {
+    "key": "ctrl+k ctrl+c",
+    "command": "center-editor-window.center",
+    "when": "editorTextFocus"
+  },
+  {
+    "key": "ctrl+alt+n",
+    "command": "explorer.newFile"
+  },
+]

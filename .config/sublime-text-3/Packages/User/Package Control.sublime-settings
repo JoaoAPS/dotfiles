@@ -1,0 +1,30 @@
+{
+	"bootstrapped": true,
+	"in_process_packages":
+	[
+	],
+	"installed_packages":
+	[
+		"A File Icon",
+		"AdvancedNewFile",
+		"Anaconda",
+		"Babel",
+		"EasyClangComplete",
+		"Emmet",
+		"FileIcons",
+		"fish",
+		"Generic Config",
+		"Julia",
+		"LaTeX-cwl",
+		"LaTeXTools",
+		"LaTeXYZ",
+		"MarkdownEditing",
+		"MarkdownPreview",
+		"Monokai - Spacegray",
+		"Monokai Extended",
+		"Package Control",
+		"Seti_UI",
+		"SideBarEnhancements",
+		"SublimeREPL"
+	]
+}

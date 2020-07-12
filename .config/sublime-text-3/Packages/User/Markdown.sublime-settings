@@ -1,0 +1,17 @@
+{
+	"caret_extra_bottom": 2,
+	"caret_extra_top": 2,
+	"caret_style": "solid",
+	"color_scheme": "Packages/Monokai Extended/Monokai Extended.tmTheme",
+	"draw_centered": false,
+	"highlight_line": true,
+	"line_numbers": true,
+	"mde.list_indent_bullets":
+	[
+		"-",
+		"+",
+		"*"
+	],
+	"translate_tabs_to_spaces": false,
+	"wrap_width": 140
+}

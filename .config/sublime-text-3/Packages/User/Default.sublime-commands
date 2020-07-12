@@ -1,0 +1,19 @@
+[
+    {
+        "caption": "Terminus: Open Julia",
+        "command": "terminus_open",
+        "args"   : {
+            //"shell_cmd": ["julia"],
+            "cmd": "julia",
+            "cwd": "${file_path:${folder}}",
+            "title": "Julia REPL",
+            "pre_window_hooks": [
+                ["focus_group", {"group": 1}]
+            ],
+            "post_window_hooks": [
+                ["terminus_minimize"]
+            ],
+            //"env": {"JULIA_NUM_THREADS":"2"},       
+        }
+    },
+]

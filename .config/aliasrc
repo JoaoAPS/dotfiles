@@ -1,0 +1,27 @@
+#!/bin/sh
+
+# Use neovim for vim if present.
+command -v nvim >/dev/null && alias vim="nvim" vimdiff="nvim -d"
+
+# Colorize commands when possible.
+alias \
+	ls="ls -hN --color=auto --group-directories-first" \
+	grep="grep --color=auto" \
+	diff="diff --color=auto" \
+	ccat="highlight --out-format=ansi"
+
+# These common commands are just too long! Abbreviate them.
+alias \
+	g="git" \
+	sdn="sudo shutdown -h now" \
+	srn="sudo shutdown -r now" \
+	pc="sudo pacman" \
+
+function cs() {
+	cd $1
+	ls
+}
+
+function za() {
+	zathura $@&
+}

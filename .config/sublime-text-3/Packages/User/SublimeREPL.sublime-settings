@@ -1,0 +1,11 @@
+{
+	// Where to look for python virtualenvs
+	"python_virtualenv_paths": [
+		"~/.local/share/virtualenvs/",  //pipenv
+		"~/.virtualenvs",  // virtualenvwrapper
+		"~/.venv"  // venv.bash https://github.com/wuub/venv
+	],
+	
+	"history_arrows": false,
+	"show_transferred_text": true,
+}

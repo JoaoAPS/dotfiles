@@ -1,0 +1,9 @@
+{
+	"julia":
+	{
+		"bracketed_paste_mode": false,
+		"prog": "terminus"
+	},
+	"linux_terminal": "st",
+	"prog": "terminus"
+}

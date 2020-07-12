@@ -1,0 +1,11 @@
+map u zoom out
+map i zoom in
+
+map d scroll half-down 
+map s scroll half-up 
+map <Left>  navigate previous
+map <Right> navigate next
+map , navigate previous
+map . navigate next
+
+map D toggle_page_mode

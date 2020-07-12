@@ -1,0 +1,6 @@
+// SublimeLinter Settings - User
+{
+	"gutter_theme": "Danish Royalty",
+    "highlights.time_to_idle": 1.0,
+
+}

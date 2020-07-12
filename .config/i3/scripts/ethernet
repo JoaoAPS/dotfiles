@@ -1,0 +1,22 @@
+#!/bin/bash
+
+if [ -d /sys/class/net/enp5s0 ]; then
+	ethernet="enp5s0"
+elif [ -d /sys/class/net/enp2s0 ]; then
+	ethernet="enp2s0"
+fi
+
+if [[ $(ip -o -4 addr show dev $ethernet) == "" ]]; then
+	if [[ "$(cat /sys/class/net/wlp1s0/operstate)" == 'down' ]]; then
+		echo "" 
+		echo "" 
+		echo "#404040" 
+	else
+		echo ""
+	fi
+else
+    echo "" 
+    echo "" 
+    echo "#00FF7F"
+    #ip -o -4 addr show dev enp59s0|python -c "import sys;print sys.stdin.read().split()[3].split('/')[0]"
+fi
