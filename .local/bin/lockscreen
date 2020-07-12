@@ -1,0 +1,17 @@
+#!/bin/bash
+
+## Use random image from dir. Only works on png
+#files=(~/.local/share/wallpapers/*)
+#img=$(printf "%s\n" "${files[RANDOM % ${#files[@]}]}")
+#i3lock -i $img
+
+# Blured screenshot
+if [[ -f /tmp/screenshot.png ]]; then
+	rm /tmp/screenshot.png
+fi
+
+maim /tmp/screenshot.png
+convert /tmp/screenshot.png -blur 0x5 /tmp/screenshotblur.png
+
+i3lock -i /tmp/screenshotblur.png
+
