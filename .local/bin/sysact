@@ -9,9 +9,9 @@ case "$(readlink -f /sbin/init)" in
 esac
 
 cmds="\
-🔒 lock		slock
-🚪 leave dwm	kill -TERM $(pidof -s dwm)
-♻ renew dwm	kill -HUP $(pidof -s dwm)
+🔒 lock		lockscreen
+🚪 leave dwm	qtile-cmd -o cmd -f shutdown
+♻ renew dwm	qtile-cmd -o cmd -f restart
 🐻 hibernate	${hib:-sudo -A systemctl suspend-then-hibernate}
 🔃 reboot	${reb:-sudo -A reboot}
 🖥 shutdown	${shut:-sudo -A shutdown -h now}"
