@@ -11,7 +11,13 @@ dbus-update-activation-environment --systemd DBUS_SESSION_BUS_ADDRESS DISPLAY XA
 remaps &		# run the remaps script, switching caps/esc and more; check it for more info
 setbg "$HOME/.local/share/wallpapers" "no" &			# set the background with the `setbg` script
 #xrdb ${XDG_CONFIG_HOME:-$HOME/.config}/Xresources &	# Uncomment to use Xresources colors/settings on startup
-# xcompmgr &		# xcompmgr for transparency
-# dunst &			# dunst for notifications
+picom &		# picom for transparency
+dunst &		# dunst for notifications
 xset r rate 300 50 &	# Speed xrate up
-# unclutter &		# Remove mouse when idle
+unclutter &		# Remove mouse when idle
+redshift -l 25.5:-50 -t 5500:3000 & #Blocks blue light after nightfall
+numlockx off & #Desliga numlock
+#Desabilita screensaver
+xset s off *
+xset s noblank &
+xset -dpms&
