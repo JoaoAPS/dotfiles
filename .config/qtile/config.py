@@ -158,7 +158,7 @@ for i in range(len(group_names)):
 
 for g in groups:
     keys.extend([
-        Key([mod], g.name, lazy.group[g.name].toscreen()),
+        Key([mod], g.name, lazy.group[g.name].toscreen(toggle=False)),
         Key([mod, "shift"], g.name, lazy.window.togroup(g.name)),
     ])
 
