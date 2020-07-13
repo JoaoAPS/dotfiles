@@ -61,14 +61,17 @@ keys = [
     Key([mod, 'shift'], 'F2', lazy.spawn('dmenuumount')),
     Key([mod], 'F3', lazy.spawn('screenshot')),
     
-    Key([mod], 'x', lazy.run_extension(extension.CommandSet(
-    commands={
-            'brave': 'brave',
-            #'spotify': 'spotify',
-            #'gnucash': 'gnucash',
-            #'calculator': 'gnome-calculator',
-        },
-    ))),
+    
+    Key([mod], 's', lazy.spawn('spotify')),
+    Key([mod], 'x', lazy.spawn('brave')),
+    #Key([mod], 'x', lazy.run_extension(extension.CommandSet(
+    #commands={
+    #        'brave': 'brave',
+    #        #'spotify': 'spotify',
+    #        #'gnucash': 'gnucash',
+    #        #'calculator': 'gnome-calculator',
+    #    },
+    #))),
 ]
 
 
@@ -164,7 +167,7 @@ for g in groups:
 groups.append(
     ScratchPad("scratchpad", [
         DropDown("term", "/usr/local/bin/st -e vim", width=0.8, height=0.7),
-        DropDown("calc", "/usr/local/bin/st -e bc",  width=0.4, height=0.4, x=0.1, y=0.2),
+        DropDown("calc", "speedcrunch",  width=0.5, height=0.6, x=0.1, y=0.2),
     ]), )
 
 keys.extend([
