@@ -10,6 +10,7 @@ import MyWidgets
 mod = "mod4"
 
 keys = [
+	#Movement
 	Key([mod], "j", lazy.layout.down()),
 	Key([mod], "k", lazy.layout.up()),
 	Key([mod], "h", lazy.layout.left()),
@@ -22,18 +23,21 @@ keys = [
 	Key([mod, "control"], "h", lazy.layout.shrink()),
 	Key([mod], "f", lazy.window.toggle_fullscreen()),
     Key([mod, "shift"], "f", lazy.window.toggle_floating()),
+    Key([mod], 'apostrophe', lazy.next_screen()),
 
-    Key([mod], "i", lazy.next_layout()),
-    Key([mod], "u", lazy.prev_layout()),
-
+    #Creation/Destruction
     Key([mod], "Return", lazy.spawn("st -e fish")),
     Key([mod], "Tab", lazy.window.kill()),
     Key([mod], "d", lazy.spawn('rofi -show drun -modi drun -config ~/.config/rofi/config')),
     Key([mod, "shift"], "d", lazy.spawn('rofi -show run -modi drun -config ~/.config/rofi/config')),
 
+    #Appearance
+    Key([mod], "i", lazy.next_layout()),
+    Key([mod], "u", lazy.prev_layout()),
     Key([mod], "b", lazy.hide_show_bar("top")),
     Key([mod, 'shift'], "b", lazy.hide_show_bar("bottom")),
-
+    
+    #Change State
     Key([mod, "control"], "r", lazy.restart()),
     Key([mod], "BackSpace", lazy.spawn('prompt "Shutdown?" "sudo shutdown -h now"')),
     Key([mod, "shift"], "BackSpace", lazy.spawn('sysact')),
@@ -60,18 +64,12 @@ keys = [
     Key([mod], 'F2', lazy.spawn('dmenumount')),
     Key([mod, 'shift'], 'F2', lazy.spawn('dmenuumount')),
     Key([mod], 'F3', lazy.spawn('screenshot')),
+    #Key([], 'SysReq', lazy.spawn('screenshot')),
     
     
+    #Lauchers
     Key([mod], 's', lazy.spawn('spotify')),
     Key([mod], 'x', lazy.spawn('brave')),
-    #Key([mod], 'x', lazy.run_extension(extension.CommandSet(
-    #commands={
-    #        'brave': 'brave',
-    #        #'spotify': 'spotify',
-    #        #'gnucash': 'gnucash',
-    #        #'calculator': 'gnome-calculator',
-    #    },
-    #))),
 ]
 
 
@@ -279,6 +277,7 @@ bottomBar = bar.Bar(
 #============= Screens =================
 screens = [
     Screen(top=topBar, bottom=bottomBar),
+    Screen()#top=topBar),
 ]
 
 # Drag floating layouts.
