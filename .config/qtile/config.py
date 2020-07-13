@@ -27,7 +27,7 @@ keys = [
     Key([mod], "u", lazy.prev_layout()),
 
     Key([mod], "Return", lazy.spawn("st -e fish")),
-    Key([mod], "q", lazy.window.kill()),
+    Key([mod], "Tab", lazy.window.kill()),
     Key([mod], "d", lazy.spawn('rofi -show drun -modi drun -config ~/.config/rofi/config')),
     Key([mod, "shift"], "d", lazy.spawn('rofi -show run -modi drun -config ~/.config/rofi/config')),
 
@@ -111,21 +111,23 @@ layouts = [
 ]
 
 #============= Groups =================
-group_names  = ['1',    '2',   '3', '4', '5', '6', '7', '8', '9', 'w',  'e', '0']
-group_labels = ['1 ', '2 ', '3', '4', '5', '6', '7', '8', '9', '', '', '']
+group_names  = ['1', '2', '3', '4', '5', '6', '7', '8', '9', 'q',   'w',  'e', '0']
+group_labels = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '', '', '', '']
 
 group_layouts = [
-    "max",   "monad", "monad", "monad",
-    "monad", "monad", "monad", "monad",
-    "monad", "monad", "max",   "max"
+    "monad", "monad", "monad",
+    "monad", "monad", "monad",
+    "monad", "monad", "monad",
+    "max",   "monad", "max",   "max"
 ]
 
 #Aplicações que devem ser abertas naquele grupo
 group_matches = [
+    None, None, None,
+    None, None, None,
+    None, None, None,
     [Match(wm_class=["Subl3", "Code", "Atom"])],
-    None, None, None,
-    None, None, None,
-    None, None, None,
+    None,
     [Match(wm_class=["Firefox", "Brave-browser", "Google-chrome"], role=["browser"])],
     [Match(wm_class=["Spotify"])]
 ]
@@ -135,7 +137,7 @@ group_spawns  = [
     None, None, None,
     None, None, None,
     None, None, None,
-    'st -e fish', 'brave', None
+    None, 'st -e fish', 'brave', None
 ]
 
 groups = []
@@ -193,8 +195,12 @@ topBar = bar.Bar(
         widget.Prompt(),
         widget.Spacer(),
         widget.Pomodoro(
-            color_inactive='#222222',
-            prefix_inactive=''
+            color_inactive='#eeeeee',
+            prefix_inactive='<span color="#222222"></span>',
+            color_active='#ffffff',
+            prefix_active='<span foreground="red"> </span>',
+            color_break='#00ff00',
+            length_pomodori=20,
         ),
         MyWidgets.Volume(
             update_interval=1,
