@@ -65,7 +65,7 @@ keys = [
     Key([mod, 'shift'], 'F2', lazy.spawn('dmenuumount')),
     Key([mod], 'F3', lazy.spawn('screenshot')),
     #Key([], 'SysReq', lazy.spawn('screenshot')),
-    
+    Key([mod], 'F4', lazy.spawn('choosedisplay')),
     
     #Lauchers
     Key([mod], 's', lazy.spawn('spotify')),
@@ -127,7 +127,7 @@ group_matches = [
     None, None, None,
     None, None, None,
     None, None, None,
-    [Match(wm_class=["Subl3", "Code", "Atom"])],
+    [Match(wm_class=["Subl3", "code-oss", "Atom"])],
     None,
     [Match(wm_class=["Firefox", "Brave-browser", "Google-chrome"], role=["browser"])],
     [Match(wm_class=["Spotify"])]
@@ -344,4 +344,4 @@ def startup_once():
 @hook.subscribe.startup
 def startup():
     bottomBar.show(False)
-    lazy.group['w'].toscreen()
+    groups[-3].toscreen()
