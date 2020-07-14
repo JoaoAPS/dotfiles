@@ -7,6 +7,9 @@
 # Add this when you include flatpak in your system
 dbus-update-activation-environment --systemd DBUS_SESSION_BUS_ADDRESS DISPLAY XAUTHORITY
 
+#Se há um monitor conectado ao notebook, coloca ele na direita do note
+[ $(xrandr --listmonitors | head -n 1 | awk '{print $2}') -eq 2 ] && xrandr --output LVDS1 --auto --output VGA1 --auto --right-of LVDS1
+
 #mpd &			# music player daemon-you might prefer it as a service though
 remaps &		# run the remaps script, switching caps/esc and more; check it for more info
 setbg "$HOME/.local/share/wallpapers" "no" &			# set the background with the `setbg` script

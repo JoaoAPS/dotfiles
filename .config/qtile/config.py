@@ -275,10 +275,21 @@ bottomBar = bar.Bar(
 
 
 #============= Screens =================
+# Finds how many monitors are connected
+from Xlib import display
+d = display.Display()
+res = d.screen().root.xrandr_get_screen_resources()._data
+num_screens = 0
+for output in res['outputs']:
+    mon = d.xrandr_get_output_info(output, res['config_timestamp'])._data
+    if mon['modes']:
+        num_screens += 1
+
 screens = [
-    Screen(top=topBar, bottom=bottomBar),
-    Screen()#top=topBar),
+	Screen(top=topBar, bottom=bottomBar),
 ]
+for i in range(1, num_screens):
+	screens.append(Screen())
 
 # Drag floating layouts.
 mouse = [
@@ -340,6 +351,8 @@ def startup_once():
             f.write(
                 datetime.now().strftime('%Y-%m-%dT%H:%M') +
                 + ' ' + str(e) + '\n')
+
+
 
 @hook.subscribe.startup
 def startup():
