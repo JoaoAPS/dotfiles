@@ -1,0 +1,51 @@
+[
+	{
+		"args":
+		{
+			"characters": "\\figura{} % Título\n"
+		},
+		"command": "insert"
+	},
+	{
+		"args":
+		{
+			"characters": "{\\imagesize} % Porcentagem da largura da área de texto\n"
+		},
+		"command": "insert"
+	},
+	{
+		"args":
+		{
+			"characters": "{} % File path\n"
+		},
+		"command": "insert"
+	},
+	{
+		"args":
+		{
+			"characters": "{O autor (2020)} %4 Fonte da figura\n"
+		},
+		"command": "insert"
+	},
+	{
+		"args":
+		{
+			"characters": "{} % Label\n"
+		},
+		"command": "insert"
+	},
+	{
+		"args":
+		{
+			"characters": "{} % Nota da figura\n"
+		},
+		"command": "insert"
+	},
+	{
+		"args":
+		{
+			"characters": "{ % Legenda da figura\n\n}"
+		},
+		"command": "insert"
+	},
+]

@@ -12,11 +12,11 @@
     "-I/home/nanni/pesquisa/libs/rulkov/include",
     "-I/home/nanni/pesquisa/libs/rulkov",
     "-I/home/nanni/pesquisa/libs/utils",
-    "-I/home/nanni/hoggar/libs/rulkov/include",
-    "-I/home/nanni/hoggar/libs/rulkov",
-    "-I/home/nanni/hoggar/libs/utils",
+    "-I/home/nanni/pesquisa/hoggar/libs/rulkov/include",
+    "-I/home/nanni/pesquisa/hoggar/libs/rulkov",
+    "-I/home/nanni/pesquisa/hoggar/libs/utils",
   ],
 
-  "hide_default_completions": true,
+  "hide_default_completions": false,
   "linter_mark_style": "solid_underline",
 }

@@ -1,19 +1,18 @@
 {
+    "enable_docstrings_tooltip": false,
     "pep8": false,
     
-    "enable_docstrings_tooltip": false,
-    
-    "pyflakes_explicit_ignore":
-    [
-        // "Redefined",
-         "UnusedImport",
-        // "UndefinedName",
-        // "UndefinedLocal",
-         "UnusedVariable,",
-        // "UndefinedExport",
-        // "DuplicateArgument",
-        // "RedefinedWhileUnused"
-    ],
+    //"pyflakes_explicit_ignore":
+    //[
+    //    // "Redefined",
+    //     "UnusedImport",
+    //    // "UndefinedName",
+    //    // "UndefinedLocal",
+    //     "UnusedVariable,",
+    //    // "UndefinedExport",
+    //    // "DuplicateArgument",
+    //    // "RedefinedWhileUnused"
+    //],
     
     "anaconda_linting_behaviour": "save-only",
 }
