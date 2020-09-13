@@ -18,8 +18,8 @@ alias umhoggar 'fusermount -z -u /home/nanni/pesquisa/hoggar'
 
 #My programs
 alias RU '$HOME/projects/dev/marcadorRU/marcadorRU.exe'
-alias acoes 'ipython -i "$HOME/projects/dev/acoes_pyAPI/launch.py"'
-
+alias acoes 'ipython -i "$HOME/projects/dev/pyacoes/launch.py"'
+alias noiselist 'docker-compose -f ~/.local/src/noiselist/docker-compose.yml up'
 
 #Git
 abbr -ag g 'git'
