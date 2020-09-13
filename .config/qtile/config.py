@@ -36,7 +36,7 @@ keys = [
     Key([mod], "u", lazy.prev_layout()),
     Key([mod], "b", lazy.hide_show_bar("top")),
     Key([mod, 'shift'], "b", lazy.hide_show_bar("bottom")),
-    
+
     #Change State
     Key([mod, "control"], "r", lazy.restart()),
     Key([mod], "BackSpace", lazy.spawn('prompt "Shutdown?" "sudo shutdown -h now"')),
@@ -55,21 +55,22 @@ keys = [
     Key([mod], "p", lazy.spawn("playerctl play-pause")),
     Key([mod], "period", lazy.spawn("playerctl next")),
     Key([mod], "comma", lazy.spawn("playerctl previous")),
-    
+
     #Screen Brightness control
     Key([], 'XF86MonBrightnessUp',   lazy.spawn('xbacklight -inc 10')),
     Key([], 'XF86MonBrightnessDown', lazy.spawn('xbacklight -dec 10')),
-    
+
     #External commands
     Key([mod], 'F2', lazy.spawn('dmenumount')),
     Key([mod, 'shift'], 'F2', lazy.spawn('dmenuumount')),
     Key([mod], 'F3', lazy.spawn('screenshot')),
     #Key([], 'SysReq', lazy.spawn('screenshot')),
     Key([mod], 'F4', lazy.spawn('choosedisplay')),
-    
+
     #Lauchers
     Key([mod], 's', lazy.spawn('spotify')),
-    Key([mod], 'x', lazy.spawn('brave')),
+    Key([mod], 'x', lazy.spawn('firefox')),
+    Key([mod], 'c', lazy.spawn('gnucash')),
 ]
 
 
@@ -130,7 +131,7 @@ group_matches = [
     [Match(wm_class=["Subl3", "code-oss", "Atom"])],
     None,
     [Match(wm_class=["Firefox", "Brave-browser", "Google-chrome"], role=["browser"])],
-    [Match(wm_class=["Spotify"])]
+    [Match(wm_class=["Spotify", "spotify"])]
 ]
 
 #Comandos a serem executados quando o grupo é criado
@@ -138,7 +139,7 @@ group_spawns  = [
     None, None, None,
     None, None, None,
     None, None, None,
-    None, 'st -e fish', 'brave', None
+    None, 'st -e fish', 'firefox', None
 ]
 
 groups = []
@@ -201,7 +202,7 @@ topBar = bar.Bar(
             color_active='#ffffff',
             prefix_active='<span foreground="red"> </span>',
             color_break='#00ff00',
-            length_pomodori=20,
+            length_pomodori=25,
         ),
         MyWidgets.Volume(
             update_interval=1,
@@ -209,7 +210,6 @@ topBar = bar.Bar(
             low_thresshold=10,
             high_thresshold=50
         ),
-
         MyWidgets.Memory(
             format='<span foreground="{color}"> {MemFree}G{SwapFree}</span>',
             update_interval=3
@@ -239,7 +239,7 @@ topBar = bar.Bar(
             format='<span foreground="#00ff7f"></span>',
             update_interval=5,
         ),
-        widget.Clock(
+        widget.clock.Clock(
             format='%a %d/%m %H:%M',
             foreground="#ffffff",
             fontsize=15,
@@ -248,28 +248,32 @@ topBar = bar.Bar(
     ],
     25,
     background="#151722",
-    opacity=0.85
+    opacity=0.9
 )
 
 bottomBar = bar.Bar(
     [
         widget.CurrentLayout (),
         widget.CapsNumLockIndicator(),
+        widget.DF(
+            update_interval=3600,
+            visible_on_warn=False,
+            warn_color="#ffaa00",
+            warn_space=20,
+        ),
         widget.CheckUpdates(
             colour_no_updates="#909090",
             colour_have_updates="#74d4cd",
             execute="sudo pacman -Syuu",
             update_interval=12*3600
         ),
+        widget.Cmus(update_interval=2),
         widget.Spacer(),
-        widget.Clipboard(
-            update_interval=1,
-        ),
         widget.Systray(),
         widget.QuickExit(),
     ],
     25,
-    background="#474a5c",#"#151722",
+    background="#474a5c",
     opacity=1
 )
 
@@ -357,4 +361,3 @@ def startup_once():
 @hook.subscribe.startup
 def startup():
     bottomBar.show(False)
-    groups[-3].toscreen()

@@ -1,10 +1,15 @@
-from libqtile import widget
+from libqtile.widget.volume import Volume
+from libqtile.widget.memory import Memory
+from libqtile.widget.cpu import CPU
+from libqtile.widget.wlan import Wlan
+
 from libqtile.log_utils import logger
 import iwlib
 import psutil
 
+
 #--------------- Volume -----------------
-class Volume(widget.Volume):
+class Volume(Volume):
     def __init__(self, **config):
         super().__init__(**config)
         self.low_thresshold  = config['low_thresshold']  if 'low_thresshold'  in config.keys() else 10
@@ -22,7 +27,7 @@ class Volume(widget.Volume):
 
 
 #--------------- Memory -----------------
-class Memory(widget.Memory):
+class Memory(Memory):
     def poll(self):
         mem = psutil.virtual_memory()
         swap = psutil.swap_memory()
@@ -37,7 +42,7 @@ class Memory(widget.Memory):
         val["SwapTotal"] = round(swap.total   // 1024 // 1024 / 1024, 1)
         val["SwapFree"]  = round(swap.free    // 1024 // 1024 / 1024, 1)
         val["SwapUsed"]  = round(swap.used    // 1024 // 1024 / 1024, 1)
-        
+
         val["MemFree"] = round(val["MemTotal"] - val["MemUsed"], 1)
 
         if val["MemFree"] < 0.5:
@@ -52,9 +57,8 @@ class Memory(widget.Memory):
 
         return self.format.format(**val, color=color)
 
-
 #--------------- CPU -----------------
-class CPU(widget.CPU):
+class CPU(CPU):
     def poll(self):
         variables = dict()
 
@@ -82,7 +86,7 @@ def get_status(interface_name):
     essid = bytes(interface['ESSID']).decode()
     return essid, quality
 
-class Wifi(widget.Wlan):
+class Wifi(Wlan):
     def poll(self):
         try:
             essid, quality = get_status(self.interface)
