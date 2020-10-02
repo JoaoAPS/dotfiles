@@ -32,7 +32,8 @@ elif (( $(echo "$cpu_usage > $limiar_warn.0" | bc) )); then
 	echo "#FFFC00"
 else
 	#Cor nível normal
-	echo "#00ff7f"
+	echo "#d0d0d0"
+	# echo "#00ff7f"
 fi
 
 

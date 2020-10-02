@@ -2,31 +2,32 @@
 # Please see https://i3wm.org/docs/userguide.html for a complete reference!
 
 set $mod Mod4
+set $alt Mod1
 
 #Font
 font pango:Code New Roman 8
 #font pango:DejaVu Sans Mono 8
 #font pango:monospace 8
 
-
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 
-#Open program keybind
-#bindsym $mod+Return exec i3-sensible-terminal
+
+#========================== Key Bindings ===============================
+# terminal
 bindsym $mod+Return exec st -e fish
 
 # kill focused window
-bindsym $mod+Shift+q kill
-bindsym $mod+q kill
+bindsym $mod+Tab kill
 
-#Dmenu (Program launcher)
-#bindsym $mod+d exec dmenu_run
-#bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
+# Program laucher
 bindsym $mod+d exec rofi -show drun -modi drun -config ~/.config/rofi/config
 bindsym $mod+Shift+d exec rofi -show run -modi drun -config ~/.config/rofi/config
 
-#---------- Navegation ----------
+# reload the configuration file
+bindsym $mod+Shift+c reload
+bindsym $mod+Shift+r restart
+
 # change focus
 bindsym $mod+h focus left
 bindsym $mod+j focus down
@@ -62,9 +63,10 @@ bindsym $mod+f fullscreen toggle
 bindsym $mod+i layout toggle split
 bindsym $mod+u layout stacking
 bindsym $mod+y layout tabbed
+bindsym $mod+t layout splitv
 
 # toggle tiling / floating
-bindsym $mod+Shift+space floating toggle
+bindsym $mod+Shift+f floating toggle
 # change focus between tiling / floating windows
 bindsym $mod+space focus mode_toggle
 
@@ -74,11 +76,27 @@ bindsym $mod+space focus mode_toggle
 # focus the child container
 #bindsym $mod+d focus child
 
+#----- Audio controls ------
+bindsym XF86AudioRaiseVolume exec amixer -q -D pulse sset Master 5%+    && pkill -RTMIN+10 i3blocks
+bindsym XF86AudioLowerVolume exec amixer -q -D pulse sset Master 5%-    && pkill -RTMIN+10 i3blocks
+bindsym XF86AudioMute        exec amixer -q -D pulse sset Master toggle && pkill -RTMIN+10 i3blocks
+# bindsym XF86AudioPlay exec playerctl play
 
-#---------- Workspaces ----------
+bindsym $mod+p exec playerctl play-pause
+bindsym $mod+period exec playerctl next
+bindsym $mod+comma  exec playerctl previous
+bindsym $mod+equal  exec amixer -q -D pulse sset Master 5%+ && pkill -RTMIN+10 i3blocks
+bindsym $mod+minus  exec amixer -q -D pulse sset Master 5%- && pkill -RTMIN+10 i3blocks
+
+#----- Screen Brightness Controls ------
+bindsym XF86MonBrightnessUp   exec xbacklight -inc 10
+bindsym XF86MonBrightnessDown exec xbacklight -dec 10
+
+
+#========================= Workspaces =========================
 #Workspaces names
-set $workspace1 "1:1 "
-set $workspace2 "2:2 "
+set $workspace1 "1:1"
+set $workspace2 "2:2"
 set $workspace3 "3:3"
 set $workspace4 "4:4"
 set $workspace5 "5:5"
@@ -86,8 +104,9 @@ set $workspace6 "6:6"
 set $workspace7 "7:7"
 set $workspace8 "8:8"
 set $workspace9 "9:9"
-set $workspaceTerminal "10:"
-set $workspaceBrowser "11:"
+set $workspaceEditor "10:"
+set $workspaceTerminal "11:"
+set $workspaceBrowser "12:"
 set $workspaceMusic "13:"
 
 #Switch to workspace
@@ -101,16 +120,16 @@ bindsym $mod+7 workspace $workspace7
 bindsym $mod+8 workspace $workspace8
 bindsym $mod+9 workspace $workspace9
 bindsym $mod+0 workspace $workspaceMusic
+bindsym $mod+q workspace $workspaceEditor
 bindsym $mod+w workspace $workspaceTerminal
 bindsym $mod+e workspace $workspaceBrowser
-
 
 #Workspace Navegation
 bindsym $mod+Control+l workspace next
 bindsym $mod+Control+h workspace prev
 bindsym $mod+Control+Right workspace next
 bindsym $mod+Control+Left workspace prev
-bindsym $mod+Tab workspace back_and_forth
+# bindsym $mod+Tab workspace back_and_forth
 
 #Move focused container to workspace
 bindsym $mod+Shift+1 move container to workspace $workspace1
@@ -123,6 +142,7 @@ bindsym $mod+Shift+7 move container to workspace $workspace7
 bindsym $mod+Shift+8 move container to workspace $workspace8
 bindsym $mod+Shift+9 move container to workspace $workspace9
 bindsym $mod+Shift+0 move container to workspace $workspaceMusic
+bindsym $mod+Shift+q move container to workspace $workspaceEditor
 bindsym $mod+Shift+w move container to workspace $workspaceTerminal
 bindsym $mod+Shift+e move container to workspace $workspaceBrowser
 
@@ -131,25 +151,115 @@ bindsym $mod+Control+Shift+h move container to workspace prev
 bindsym $mod+Control+Shift+Right move container to workspace next
 bindsym $mod+Control+Shift+Left move container to workspace prev
 
+
 #Assign classes(programs) to workspaces
+#(?i) => case insensitive
+assign [class="(?i)subl3"] $workspaceEditor
+assign [class="(?i)code"]  $workspaceEditor
 assign [class="Brave-browser"] $workspaceBrowser
-assign [class="Firefox"] $workspaceBrowser
-#assign [class="Navigator"] $workspaceBrowser
-assign [class="Spotify"] $workspaceMusic
+assign [class="(?i)firefox"]   $workspaceBrowser
+assign [class="Navigator"]     $workspaceBrowser
+assign [class="(?i)spotify"] $workspaceMusic
 for_window [class="Spotify"] move to workspace $workspaceMusic
+
 for_window [class="Gnome-calculator"] floating enable
 #for_window [class="gksqt"] floating enable
 #--------------------------------
 
-# reload the configuration file
-bindsym $mod+Shift+c reload
-# restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
-bindsym $mod+Shift+r restart
-# exit i3 (logs you out of your X session)
 
-# resize window (you can also use the mouse for that)
+#
+# ======================= STATUS BAR ==============================
+# Top bar
+bar {
+	status_command i3blocks -c ~/.config/i3/i3blocks_top.conf
+  
+	#Enables tranparency (RGBA)
+	i3bar_command i3bar -t
+
+	height 25
+	position top
+    font pango:Ubuntu 10
+	#font pango:DejaVu Sans Mono 9
+	separator_symbol " "
+	strip_workspace_numbers yes
+    workspace_min_width 20
+    tray_output none
+    
+	colors {
+		background	#151722d0
+		separator	#757575
+
+		#class             border    background text
+        inactive_workspace #151722d0 #151722d0  #aaaaaa
+        focused_workspace  #171722d9 #171722d9  #00c8e6
+        urgent_workspace   #171722d9 #171722d9  #aebde34 
+    }
+}
+
+# Bottom bar
+bar {
+	id bar-2
+    status_command i3blocks -c ~/.config/i3/i3blocks_bottom.conf
+    i3bar_command i3bar -t
+    
+    # Select monitor the bar will appear
+    # output VGA-0
+    
+    mode hide
+    modifier $mod+Control
+    
+    height 20
+    position bottom
+    font pango:Ubuntu 10
+    workspace_buttons no
+
+    colors {
+        background  #151722
+        separator   #757575
+        
+		#class             border    background text
+        inactive_workspace #151722d0 #151722d0  #aaaaaa
+        focused_workspace  #171722d9 #171722d9  #00c8e6
+        urgent_workspace   #171722d9 #171722d9  #aebde34 
+    }
+}
+
+
+#======================= Appearance ===========================
+#------ Color Squeme ------
+#Window colors
+#class			border	backgr.	text	indicator
+client.focused		#101010	#3b96a3	#ffffff	#3b96a3
+client.unfocused	#101010	#333333	#666655	#484e50
+client.focused_inactive	#101010	#666666	#111111	#484e50
+
+#----- Borders -----
+for_window [class=".*"] border pixel 2
+
+#----- Gaps -----
+gaps inner 6
+smart_gaps on
+smart_borders on
+
+
+
+#========================= Modes ==============================
+# Open Programs
+set $mode_launcher Launch: [f]irefox, [s]potify, gnu[c]ash, c[a]lculator
+mode "$mode_launcher" {
+	bindsym f exec firefox
+	bindsym b exec brave
+	bindsym s exec spotify
+	bindsym c exec gnucash
+	bindsym a exec gnome-calculator
+
+	bindsym Escape mode "default"
+	bindsym Return mode "default"
+}
+bindsym $mod+x mode "$mode_launcher"
+
+# Resize window
 mode "resize" {
-        # These bindings trigger as soon as you enter the resize mode
         bindsym h resize shrink width 10 px or 10 ppt
         bindsym j resize grow height 10 px or 10 ppt
         bindsym k resize shrink height 10 px or 10 ppt
@@ -167,100 +277,8 @@ mode "resize" {
 }
 bindsym $mod+r mode "resize"
 
-# Start i3bar to display a workspace bar (plus the system information i3status
-# finds out, if available)
-bar {
-	#Uses i3blocks as status bar
-	status_command i3blocks -c ~/.config/i3/i3blocks.conf
-	#Enables tranparency (RGBA)
-	i3bar_command i3bar -t
 
-	height 21
-	position top
-    font pango:Ubuntu 9
-	#font pango:DejaVu Sans Mono 9
-	separator_symbol " "
-	strip_workspace_numbers yes
-
-	colors {
-		background	#151722d0
-		separator	#757575
-
-		#class			border	backgr.	text
-        inactive_workspace #151722d0 #151722d0 #aaaaaa
-        focused_workspace  #17181c #17181c #00c8e6
-
-        #Old scheme
-		#focused_workspace	#333333	#253588	#dddddd
-		#inactive_workspace	#333333	#222222	#666666
-	}
-}
-
-
-#------ Color Squeme ------
-#Window colors
-#class			border	backgr.	text	indicator
-client.focused		#101010	#3b96a3	#ffffff	#3b96a3
-client.unfocused	#101010	#333333	#666655	#484e50
-client.focused_inactive	#101010	#666666	#111111	#484e50
-
-#----- Borders -----
-for_window [class=".*"] border pixel 3
-
-#----- Gaps -----
-gaps inner 6
-smart_gaps on
-smart_borders on
-
-#----- Audio controls ------
-bindsym XF86AudioRaiseVolume exec amixer -q -D pulse sset Master 5%+ && pkill -RTMIN+10 i3blocks
-bindsym XF86AudioLowerVolume exec amixer -q -D pulse sset Master 5%- && pkill -RTMIN+10 i3blocks
-bindsym XF86AudioMute exec amixer -q -D pulse sset Master toggle && pkill -RTMIN+10 i3blocks
-#Play / Pause
-#bindsym XF86AudioPlay exec playerctl play
-bindsym $mod+p exec playerctl pause
-bindsym $mod+Shift+p exec playerctl play
-#Next/Previous
-bindsym $mod+o exec playerctl next
-bindsym $mod+Shift+o exec playerctl previous
-
-#----- Screen Brightness Controls ------
-#Increase screen brightness
-bindsym XF86MonBrightnessUp exec xbacklight -inc 10
-#Decrease screen brightness
-bindsym XF86MonBrightnessDown exec xbacklight -dec 10
-
-#Startup Programs
-exec compton
-exec --no-startup-id redshift -l -25.5:-50 -t 5500:3000
-#exec firefox
-exec brave
-exec --no-startup-id i3-msg 'workspace $workspaceTerminal; exec st -e fish'
-exec --no-startup-id numlockx off
-exec --no-startup-id dunst
-exec --no-startup-id unclutter -idle 3
-
-#Desabilita screensaver
-exec xset s off
-exec xset s noblank
-exec xset -dpms
-
-#----- Open Programs -----
-set $mode_launcher Launch: [b]rave, [s]potify, gnu[c]ash, c[a]lculator, [f]irefox
-bindsym $mod+x mode "$mode_launcher"
-
-mode "$mode_launcher" {
-	bindsym f exec firefox
-	bindsym b exec brave
-	bindsym s exec spotify
-	bindsym c exec gnucash
-	bindsym a exec gnome-calculator
-
-	bindsym Escape mode "default"
-	bindsym Return mode "default"
-}
-
-#----- Move floating windowns -----
+# Move floating windowns
 mode "moveit" {
     bindsym Up move up 20px
     bindsym Left move left 20px
@@ -277,25 +295,64 @@ mode "moveit" {
 bindsym $mod+m focus floating; mode "moveit"
 
 
+#========================= Startup ============================
+#Startup Programs
+exec firefox
+exec --no-startup-id i3-msg 'workspace $workspaceTerminal; exec st -e fish'
+
+# The following are all done by .xprofile on startx
+# exec picom -D 3 -i 0.9 -m 0.9
+# exec --no-startup-id redshift -l -25.5:-50 -t 5500:3000
+# exec --no-startup-id numlockx off
+# exec --no-startup-id dunst
+# exec --no-startup-id unclutter -idle 3
+# # Desabilita screensaver
+# exec xset s off
+# exec xset s noblank
+# exec xset -dpms
+
+
+#========================= Prompts ============================
 #Dmenu to choose which display to use
-bindsym $mod+F4 exec ~/.local/bin/chooseDisplay
+bindsym $mod+F4 exec choosedisplay
 
-
-#Keyring Login
-exec /usr/bin/gnome-keyring-daemon --start --components=pkcs11,secrets,ssh
-
-#Wallpaper
-exec_always xwallpaper --stretch ~/Pictures/wallpaper
-
-#Lock Screen
-bindsym $mod+Mod1+l exec ~/configs/i3/scripts/i3lock-blur
+# Shutdown & Cia
+bindsym $mod+BackSpace exec prompt "Shutdown?" "sudo shutdown -h now"
+bindsym $mod+Shift+BackSpace exec sysact
+bindsym $mod+Control+BackSpace exec prompt "Restart?" "sudo shutdown -r now"
+bindsym $mod+Shift+Control+BackSpace exec prompt "Log out?" "i3-msg exit"
+# Lock Screen
+bindsym $mod+Mod1+BackSpace exec ~/configs/i3/scripts/i3lock-blur
 #bindsym $mod+Mod1+l exec i3lock -i ~/Pictures/lockScreen
 #bindsym $mod+Mod1+l exec i3lock --color "#303030"
-#Log out
-bindsym $mod+Mod1+o exec ~/.local/bin/outros/dmenu_prompt "Log out?" "i3-msg exit"
-#Shutdown
-bindsym $mod+Mod1+p exec ~/.local/bin/outros/dmenu_prompt "Shutdown?" "sudo shutdown -h now"
 
 
-#Misc
+# Misc
 for_window [class="Yad"] floating enable
+
+# Keyring Login
+exec /usr/bin/gnome-keyring-daemon --start --components=pkcs11,secrets,ssh
+
+
+
+
+
+
+
+
+
+# start main stack
+bindsym $mod+Shift+s   layout splitv;\
+                       move left;\
+                       resize grow right 20 px or 20 ppt;\
+                       split v;\
+                       layout stacking
+
+
+exec --no-startup-id  $HOME/.config/i3/i3-master-stack/i3_master
+ # swap to master node
+ bindsym $mod+n nop swap master 
+ # go to master node
+ bindsym $mod+Shift+n nop go master 
+ # enable/disable master layout in current workspace
+ bindsym $mod+Mod1+n nop master toggle 
