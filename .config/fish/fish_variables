@@ -5,6 +5,9 @@ SETUVAR __fish_init_2_39_8:\x1d
 SETUVAR __fish_init_2_3_0:\x1d
 SETUVAR __fish_init_3_x:\x1d
 SETUVAR __fish_initialized:3100
+SETUVAR _fish_abbr_dcd:docker\x2dcompose\x20down
+SETUVAR _fish_abbr_dcr:docker\x2dcompose\x20run\x20\x2d\x2drm
+SETUVAR _fish_abbr_dcu:docker\x2dcompose\x20up
 SETUVAR _fish_abbr_ga:git\x20add
 SETUVAR _fish_abbr_gc:git\x20commit\x20\x2dm
 SETUVAR _fish_abbr_gco:git\x20checkout
@@ -43,3 +46,4 @@ SETUVAR fish_pager_color_completion:\x1d
 SETUVAR fish_pager_color_description:B3A06D\x1eyellow
 SETUVAR fish_pager_color_prefix:white\x1e\x2d\x2dbold\x1e\x2d\x2dunderline
 SETUVAR fish_pager_color_progress:brwhite\x1e\x2d\x2dbackground\x3dcyan
+SETUVAR fish_user_paths:/usr/bin/vendor_perl/

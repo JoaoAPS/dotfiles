@@ -27,6 +27,7 @@ abbr -ag ga 'git add'
 abbr -ag gs 'git status'
 abbr -ag gc 'git commit -m'
 abbr -ag gd 'git diff'
+abbr -ag gcl 'git clone'
 abbr -ag gco 'git checkout'
 abbr -ag gpl 'git pull'
 abbr -ag gps 'git push'
@@ -34,6 +35,9 @@ abbr -ag gps 'git push'
 #Encurtadores
 abbr sdn 'sudo shutdown -h now'
 abbr srn 'sudo shutdown -r now'
+abbr dcr 'docker-compose run --rm'
+abbr dcu 'docker-compose up'
+abbr dcd 'docker-compose down'
 
 #Facilitadores de memorização
 alias html2pdf 'wkhtmltopdf'
