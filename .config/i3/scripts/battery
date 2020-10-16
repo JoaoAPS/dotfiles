@@ -65,7 +65,7 @@ else:
     if state == "Discharging":
         fulltext = FA_BATTERY + " "
     elif state == "Full":
-        fulltext = FA_PLUG + " "
+        fulltext = FA_PLUG
         timeleft = ""
     elif state == "Unknown":
         fulltext =  FA_BATTERY + FA_QUESTION + " "
@@ -91,12 +91,13 @@ else:
 #            return "#FFFF33"
 #        if percent < 80:
 #            return "#FFFF66"
-        return "#FFFFFF"
+        return "#d0d0d0"
 
-    form =  '<span color="{}">{}</span>'
-    fulltext += form.format(color(percentleft), percentleft)
-    fulltext += form.format(color(percentleft), '%')
-    fulltext += form.format(color(percentleft), timeleft)
+    if state != "Full":
+        form = '<span color="{}">{}</span>'
+        fulltext += form.format(color(percentleft), percentleft)
+        fulltext += form.format(color(percentleft), '%')
+        fulltext += form.format(color(percentleft), timeleft)
 
 print(fulltext)
 print(fulltext)

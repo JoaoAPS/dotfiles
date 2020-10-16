@@ -29,7 +29,7 @@ bindsym $mod+Shift+c reload
 bindsym $mod+Shift+r restart
 
 # change focus
-bindsym $mod+h focus left
+# bindsym $mod+h focus left
 bindsym $mod+j focus down
 bindsym $mod+k focus up
 bindsym $mod+l focus right
@@ -41,7 +41,7 @@ bindsym $mod+Up focus up
 bindsym $mod+Right focus right
 
 # move focused window
-bindsym $mod+Shift+h move left
+# bindsym $mod+Shift+h move left
 bindsym $mod+Shift+j move down
 bindsym $mod+Shift+k move up
 bindsym $mod+Shift+l move right
@@ -125,10 +125,10 @@ bindsym $mod+w workspace $workspaceTerminal
 bindsym $mod+e workspace $workspaceBrowser
 
 #Workspace Navegation
-bindsym $mod+Control+l workspace next
-bindsym $mod+Control+h workspace prev
-bindsym $mod+Control+Right workspace next
-bindsym $mod+Control+Left workspace prev
+# bindsym $mod+Control+l workspace next
+# bindsym $mod+Control+h workspace prev
+# bindsym $mod+Control+Right workspace next
+# bindsym $mod+Control+Left workspace prev
 # bindsym $mod+Tab workspace back_and_forth
 
 #Move focused container to workspace
@@ -146,35 +146,62 @@ bindsym $mod+Shift+q move container to workspace $workspaceEditor
 bindsym $mod+Shift+w move container to workspace $workspaceTerminal
 bindsym $mod+Shift+e move container to workspace $workspaceBrowser
 
-bindsym $mod+Control+Shift+l move container to workspace next
-bindsym $mod+Control+Shift+h move container to workspace prev
-bindsym $mod+Control+Shift+Right move container to workspace next
-bindsym $mod+Control+Shift+Left move container to workspace prev
+# bindsym $mod+Control+Shift+l move container to workspace next
+# bindsym $mod+Control+Shift+h move container to workspace prev
+# bindsym $mod+Control+Shift+Right move container to workspace next
+# bindsym $mod+Control+Shift+Left move container to workspace prev
 
 
 #Assign classes(programs) to workspaces
 #(?i) => case insensitive
 assign [class="(?i)subl3"] $workspaceEditor
 assign [class="(?i)code"]  $workspaceEditor
-assign [class="Brave-browser"] $workspaceBrowser
+# assign [class="Brave-browser"] $workspaceBrowser
 assign [class="(?i)firefox"]   $workspaceBrowser
 assign [class="Navigator"]     $workspaceBrowser
 assign [class="(?i)spotify"] $workspaceMusic
 for_window [class="Spotify"] move to workspace $workspaceMusic
 
 for_window [class="Gnome-calculator"] floating enable
+for_window [class="SpeedCrunch"] floating enable
 #for_window [class="gksqt"] floating enable
 #--------------------------------
 
 
-#
+#======================== MONITORS ==============================
+bindsym $mod+Control+l focus output right
+bindsym $mod+Control+h focus output left
+bindsym $mod+Control+Right focus output right
+bindsym $mod+Control+Left focus output left
+bindsym $mod+apostrophe focus output right
+
+bindsym $mod+Control+Shift+l move workspace to output right
+bindsym $mod+Control+Shift+h move workspace to output left
+bindsym $mod+Control+Shift+Right move workspace to output right
+bindsym $mod+Control+Shift+Left move workspace to output left
+bindsym $mod+Shift+apostrophe move workspace to output right
+
+
+#======================== SCRATCHPAD ==============================
+exec --no-startup-id speedcrunch -title calculator
+exec --no-startup-id gedit --name scratchnotebook --class scratchnotebook
+
+for_window [title="calculator"] move scratchpad
+for_window [class="scratchnotebook"] move scratchpad
+
+bindsym $mod+Shift+a [title="calculator"] scratchpad show
+bindsym $mod+Shift+Return [class="scratchnotebook"] scratchpad show
+
+
 # ======================= STATUS BAR ==============================
-# Top bar
+# Top bar (Main screen)
 bar {
 	status_command i3blocks -c ~/.config/i3/i3blocks_top.conf
   
 	#Enables tranparency (RGBA)
 	i3bar_command i3bar -t
+
+    output primary
 
 	height 25
 	position top
@@ -196,14 +223,12 @@ bar {
     }
 }
 
-# Bottom bar
+# Bottom bar (Main screen)
 bar {
-	id bar-2
     status_command i3blocks -c ~/.config/i3/i3blocks_bottom.conf
     i3bar_command i3bar -t
     
-    # Select monitor the bar will appear
-    # output VGA-0
+    output primary
     
     mode hide
     modifier $mod+Control
@@ -217,6 +242,37 @@ bar {
         background  #151722
         separator   #757575
         
+		#class             border    background text
+        inactive_workspace #151722d0 #151722d0  #aaaaaa
+        focused_workspace  #171722d9 #171722d9  #00c8e6
+        urgent_workspace   #171722d9 #171722d9  #aebde34 
+    }
+}
+
+# Top bar (Secondary screen)
+bar {
+	# status_command i3blocks -c ~/.config/i3/i3blocks_secondary.conf
+	status_command i3blocks -c ~/.config/i3/i3blocks_top.conf
+  
+	#Enables tranparency (RGBA)
+	i3bar_command i3bar -t
+
+    # Select monitor the bar will appear
+    output VGA1
+
+	height 25
+	position top
+    font pango:Ubuntu 10
+	#font pango:DejaVu Sans Mono 9
+	separator_symbol " "
+	strip_workspace_numbers yes
+    workspace_min_width 20
+    tray_output none
+    
+	colors {
+		background	#151722d0
+		separator	#757575
+
 		#class             border    background text
         inactive_workspace #151722d0 #151722d0  #aaaaaa
         focused_workspace  #171722d9 #171722d9  #00c8e6
@@ -319,7 +375,7 @@ bindsym $mod+F4 exec choosedisplay
 # Shutdown & Cia
 bindsym $mod+BackSpace exec prompt "Shutdown?" "sudo shutdown -h now"
 bindsym $mod+Shift+BackSpace exec sysact
-bindsym $mod+Control+BackSpace exec prompt "Restart?" "sudo shutdown -r now"
+bindsym $mod+Control+BackSpace exec prompt "Reboot?" "sudo shutdown -r now"
 bindsym $mod+Shift+Control+BackSpace exec prompt "Log out?" "i3-msg exit"
 # Lock Screen
 bindsym $mod+Mod1+BackSpace exec ~/configs/i3/scripts/i3lock-blur
@@ -342,17 +398,19 @@ exec /usr/bin/gnome-keyring-daemon --start --components=pkcs11,secrets,ssh
 
 
 # start main stack
-bindsym $mod+Shift+s   layout splitv;\
-                       move left;\
-                       resize grow right 20 px or 20 ppt;\
-                       split v;\
-                       layout stacking
+# bindsym $mod+Shift+s   layout splitv;\
+#                        move left;\
+#                        resize grow right 20 px or 20 ppt;\
+#                        split v;\
+#                        layout stacking
+# 
 
-
+# i3-master-stack
 exec --no-startup-id  $HOME/.config/i3/i3-master-stack/i3_master
- # swap to master node
- bindsym $mod+n nop swap master 
- # go to master node
- bindsym $mod+Shift+n nop go master 
- # enable/disable master layout in current workspace
- bindsym $mod+Mod1+n nop master toggle 
+bindsym $mod+n nop swap master 
+bindsym $mod+Shift+n nop go master 
+bindsym $mod+h nop go master 
+bindsym $mod+Shift+h nop swap master 
+
+# enable/disable master layout in current workspace
+bindsym $mod+$alt+n nop master toggle 
