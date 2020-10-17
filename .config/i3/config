@@ -21,9 +21,9 @@ bindsym $mod+Return exec st -e fish
 bindsym $mod+Tab kill
 
 # Program laucher
-bindsym $mod+d exec ~/.config/i3/scripts/rofi/
-# bindsym $mod+d exec rofi -show drun -modi drun -config ~/.config/rofi/config
-bindsym $mod+Shift+d exec rofi -show run -modi drun -config ~/.config/rofi/config
+# bindsym $mod+d exec rofi -show drun -modi drun
+bindsym $mod+d exec rofi -show drun -theme clean
+bindsym $mod+Shift+d exec rofi -show run -modi run
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
@@ -375,9 +375,8 @@ bindsym $mod+F4 exec choosedisplay
 
 # Shutdown & Cia
 bindsym $mod+BackSpace exec prompt "Shutdown?" "sudo shutdown -h now"
-bindsym $mod+Shift+BackSpace exec sysact
 bindsym $mod+Control+BackSpace exec prompt "Reboot?" "sudo shutdown -r now"
-bindsym $mod+Shift+Control+BackSpace exec prompt "Log out?" "i3-msg exit"
+bindsym $mod+Shift+BackSpace exec rofi -modi 'Powermenu:~/.config/rofi/scripts/rofi-powermenu.sh' -show Powermenu -theme powermenu
 # Lock Screen
 bindsym $mod+$alt+BackSpace exec lockscreen blur
 bindsym $mod+Pause exec lockscreen blur
@@ -388,29 +387,8 @@ bindsym $mod+Pause exec lockscreen blur
 #     - imgr - Random PNG wallpaper from ~/.local/share/wallpaper
 #     - color 'color' - Fill lock screen with color
 
-# Misc
-for_window [class="Yad"] floating enable
 
-# Keyring Login
-exec /usr/bin/gnome-keyring-daemon --start --components=pkcs11,secrets,ssh
-
-
-
-
-
-
-
-
-
-# start main stack
-# bindsym $mod+Shift+s   layout splitv;\
-#                        move left;\
-#                        resize grow right 20 px or 20 ppt;\
-#                        split v;\
-#                        layout stacking
-# 
-
-# i3-master-stack
+#====================== i3-master-stack ==========================
 exec --no-startup-id  $HOME/.config/i3/i3-master-stack/i3_master
 bindsym $mod+n nop swap master 
 bindsym $mod+Shift+n nop go master 
@@ -419,3 +397,10 @@ bindsym $mod+Shift+h nop swap master
 
 # enable/disable master layout in current workspace
 bindsym $mod+$alt+n nop master toggle 
+
+
+#====================== Misc ======================================
+for_window [class="Yad"] floating enable
+
+# Keyring Login
+exec /usr/bin/gnome-keyring-daemon --start --components=pkcs11,secrets,ssh

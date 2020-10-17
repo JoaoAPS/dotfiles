@@ -1,0 +1,9 @@
+configuration {
+	lines: 5;
+	font: "Code New Roman 15";
+	eh: 2;
+	separator-style: "none";
+	hide-scrollbar: true;
+	color-normal: "argb:e04e4743, #eeeeee, argb:e04e4743, #40b0b7, #ffffff";
+	color-window: "argb:e0343027, argb:e0343027";
+}
