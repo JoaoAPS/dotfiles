@@ -1,10 +1,10 @@
-#!/bin/bash
+#!/bin/sh
 
-removedExtensions="*.dvi *.aux *.log *.bbl *.blg *.nav *.out *.snm *.toc *.synctex.gz *.fls *.fdb_latexmk"
-
-#O directorio onde se encontra os arquivos pode ser passado como um argumento opcional
-[ $# -eq 1 ] && cd $1
-
-rm $removedExtensions  2> /dev/null
-rm -rf auto 2> /dev/null
-
+case "$1" in
+	*.tex)
+	file=$(readlink -f "$1")
+	dir=$(dirname "$file")
+	base="${file%.*}"
+	find "$dir"  -maxdepth 1 -type f -regextype gnu-awk -regex "^$base\\.(4tc|xref|tmp|pyc|pyo|fls|vrb|fdb_latexmk|bak|swp|aux|log|synctex\\(busy\\)|lof|lot|maf|idx|mtc|mtc0|nav|out|snm|toc|bcf|run\\.xml|synctex\\.gz|blg|bbl|dvi)" -delete ;;
+	*) printf "Give .tex file as argument.\\n" ;;
+esac
