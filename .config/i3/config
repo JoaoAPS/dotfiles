@@ -21,7 +21,8 @@ bindsym $mod+Return exec st -e fish
 bindsym $mod+Tab kill
 
 # Program laucher
-bindsym $mod+d exec rofi -show drun -modi drun -config ~/.config/rofi/config
+bindsym $mod+d exec ~/.config/i3/scripts/rofi/
+# bindsym $mod+d exec rofi -show drun -modi drun -config ~/.config/rofi/config
 bindsym $mod+Shift+d exec rofi -show run -modi drun -config ~/.config/rofi/config
 
 # reload the configuration file
@@ -301,13 +302,13 @@ smart_borders on
 
 #========================= Modes ==============================
 # Open Programs
-set $mode_launcher Launch: [f]irefox, [s]potify, gnu[c]ash, c[a]lculator
+set $mode_launcher Launch: [f]irefox, [s]potify, gnu[c]ash, [t]hunar
 mode "$mode_launcher" {
 	bindsym f exec firefox
 	bindsym b exec brave
 	bindsym s exec spotify
 	bindsym c exec gnucash
-	bindsym a exec gnome-calculator
+	bindsym t exec thunar
 
 	bindsym Escape mode "default"
 	bindsym Return mode "default"
@@ -378,10 +379,14 @@ bindsym $mod+Shift+BackSpace exec sysact
 bindsym $mod+Control+BackSpace exec prompt "Reboot?" "sudo shutdown -r now"
 bindsym $mod+Shift+Control+BackSpace exec prompt "Log out?" "i3-msg exit"
 # Lock Screen
-bindsym $mod+Mod1+BackSpace exec ~/configs/i3/scripts/i3lock-blur
-#bindsym $mod+Mod1+l exec i3lock -i ~/Pictures/lockScreen
-#bindsym $mod+Mod1+l exec i3lock --color "#303030"
-
+bindsym $mod+$alt+BackSpace exec lockscreen blur
+bindsym $mod+Pause exec lockscreen blur
+# lockscreen script options:
+#     - blur - Blur your screen
+#     - pixel - Pixelize your screen
+#     - img '/path/to/image.png' - Use image as wallpaper (PNG only)
+#     - imgr - Random PNG wallpaper from ~/.local/share/wallpaper
+#     - color 'color' - Fill lock screen with color
 
 # Misc
 for_window [class="Yad"] floating enable
