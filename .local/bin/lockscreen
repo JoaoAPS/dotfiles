@@ -1,17 +1,31 @@
 #!/bin/bash
 
-## Use random image from dir. Only works on png
-#files=(~/.local/share/wallpapers/*)
-#img=$(printf "%s\n" "${files[RANDOM % ${#files[@]}]}")
-#i3lock -i $img
+case "$1" in
+	img)
+		i3lock -i $2 ;;
+	imgr)
+		# Use random image from dir. Only works on png
+		files=(~/.local/share/wallpapers/*)
+		img=$(printf "%s\n" "${files[RANDOM % ${#files[@]}]}")
+		i3lock -i $img ;;
+	blur)
+		if [[ -f /tmp/screenshot.png ]]; then
+			rm /tmp/screenshot.png
+		fi
 
-# Blured screenshot
-if [[ -f /tmp/screenshot.png ]]; then
-	rm /tmp/screenshot.png
-fi
-
-maim /tmp/screenshot.png
-convert /tmp/screenshot.png -blur 0x5 /tmp/screenshotblur.png
-
-i3lock -i /tmp/screenshotblur.png
-
+		scrot -z -q 40 /tmp/screenshot.png
+		convert /tmp/screenshot.png -blur 0x5 /tmp/screenshotblur.png
+		i3lock -i /tmp/screenshotblur.png ;;
+	pixel)
+		if [[ -f /tmp/screenshot.png ]]; then
+			rm /tmp/screenshot.png
+		fi
+		
+		scrot -z -q 40 /tmp/screenshot.png
+		convert /tmp/screenshot.png -filter point -resize 10% -resize 1000% /tmp/screenshotpixel.png
+		i3lock -i /tmp/screenshotpixel.png ;;
+	color)	
+		i3lock --color $2;;
+	*)
+		i3lock --color "#303030" ;;
+esac
