@@ -28,6 +28,9 @@
     //Move caret to right without reaching for arrow keys
     { "keys": ["ç", "ç"], "command": "move", "args": {"by": "characters", "forward": true} },
     
+    //------------ Advanced New File ------------------
+    { "keys": ["ctrl+alt+n"], "command": "advanced_new_file_new"},
+    
      
     //------------ Vintage ------------------
     //Binds h,h to enter command mode

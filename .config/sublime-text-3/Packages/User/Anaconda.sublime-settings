@@ -1,18 +1,35 @@
 {
+    "enable_signatures_tooltip": false,
     "enable_docstrings_tooltip": false,
-    "pep8": false,
-    
-    //"pyflakes_explicit_ignore":
-    //[
-    //    // "Redefined",
-    //     "UnusedImport",
-    //    // "UndefinedName",
-    //    // "UndefinedLocal",
-    //     "UnusedVariable,",
-    //    // "UndefinedExport",
-    //    // "DuplicateArgument",
-    //    // "RedefinedWhileUnused"
-    //],
-    
+    "suppress_word_completions": false,
+    "suppress_explicit_completions": true,
+       
     "anaconda_linting_behaviour": "save-only",
+    "auto_formatting": true,
+    
+    "autoformat_select":
+    [
+        "E101", // Reindent all lines.
+        "E111", // Reindent all lines.
+        "E121", // Fix indentation to be a multiple of four.
+        "E122", // Add absent indentation for hanging indentation.
+        "E242", // Remove extraneous whitespace around operator.
+        "E251", // Remove whitespace around parameter '=' sign.
+        "E301", // Add missing blank line.
+        "E302", // Add missing 2 blank lines.
+        "E303", // Remove extra blank lines.
+        "E304", // Remove blank line following function decorator.
+        "W291", // Remove trailing whitespace.
+        "W293", // Remove trailing whitespace on blank line.
+        "W391", // Remove trailing blank lines.
+    ],
+    
+    "autoformat_ignore":
+    [
+        "E309",
+        "W503", // operator on end of line
+        "W504", // operator on end of line
+    ],
+    
+    "python_interpreter": "/usr/bin/python",
 }

@@ -1,15 +1,16 @@
+ 
 [
 	{
 		"args":
 		{
-			"characters": "\\begin{figure}[!htbp]\n\\centering\\footnotesize\n\\caption{} % Título\n\n"
+			"characters": "\\begin{figure}[!ht]\n\\centering\n\n"
 		},
 		"command": "insert"
 	},
 	{
 		"args":
 		{
-			"characters": "\\begin{subfigure}{0.3\\textwidth}\n\\includegraphics[width=\\linewidth]{}\n\\label{fig:}\n\\caption{}\\end{subfigure}\n"
+			"characters": "\\begin{subfigure}{0.32\\textwidth}\n\\includegraphics[width=\\linewidth]{}\n\\caption{}\n\\label{fig:}\n\\end{subfigure}\n"
 		},
 		"command": "insert"
 	},
@@ -23,14 +24,21 @@
 	{
 		"args":
 		{
-			"characters": "\\begin{subfigure}{0.3\\textwidth}\n\\includegraphics[width=\\linewidth]{}\n\\label{fig:}\n\\caption{}\\end{subfigure}\n\n"
+			"characters": "\\begin{subfigure}{0.32\\textwidth}\n\\includegraphics[width=\\linewidth]{}\n\\label{fig:}\n\\caption{}\n\\end{subfigure}\n\n"
 		},
 		"command": "insert"
 	},
 	{
 		"args":
 		{
-			"characters": "\\label{fig:}\n\\par FONTE: O autor (2020).\n% \\par NOTA: \n\\par LEGENDA: \n\\end{figure}\n"
+			"characters": "\\figinfos{} % Título\n{} % Label\n{} % Legenda\n"
+		},
+		"command": "insert"
+	},
+	{
+		"args":
+		{
+			"characters": "\n\\end{figure}\n"
 		},
 		"command": "insert"
 	},
