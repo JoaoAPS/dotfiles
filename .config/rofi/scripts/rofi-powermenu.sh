@@ -10,8 +10,8 @@ if [ -z "$@" ]; then
     echo -en "Cancel\0icon\x1fcancel\n"
 else
     if [ "$1" = "Shutdown" ]; then
-        echo -en "Now\n30s\n1m"
-    elif [ "$1" = "Exit" ]; then
+        sudo shutdown -h now
+    elif [ "$1" = "Logout" ]; then
         i3-msg exit
     elif [ "$1" = "Reboot" ]; then
         # sudo reboot
