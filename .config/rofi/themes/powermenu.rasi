@@ -16,7 +16,7 @@ configuration {
 
 #window {
     width: 700px;
-    height: 145px;
+    height: 150px;
     background-color: @background-solid;
     padding: 10px;
 }
