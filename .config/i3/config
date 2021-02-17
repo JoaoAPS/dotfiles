@@ -54,8 +54,8 @@ bindsym $mod+Shift+Up move up
 bindsym $mod+Shift+Right move right
 
 # vertical/horizontal orientation
-bindsym $mod+b split h
-bindsym $mod+v split v
+# bindsym $mod+b split h
+# bindsym $mod+v split v
 
 # enter fullscreen mode for the focused container
 bindsym $mod+f fullscreen toggle
@@ -105,10 +105,11 @@ set $workspace6 "6:6"
 set $workspace7 "7:7"
 set $workspace8 "8:8"
 set $workspace9 "9:9"
-set $workspaceEditor "10:"
-set $workspaceTerminal "11:"
-set $workspaceBrowser "12:"
-set $workspaceMusic "13:"
+set $workspaceXournal "10:"
+set $workspaceEditor "11:"
+set $workspaceTerminal "12:"
+set $workspaceBrowser "13:"
+set $workspaceMusic "14:"
 
 #Switch to workspace
 bindsym $mod+1 workspace $workspace1
@@ -121,6 +122,7 @@ bindsym $mod+7 workspace $workspace7
 bindsym $mod+8 workspace $workspace8
 bindsym $mod+9 workspace $workspace9
 bindsym $mod+0 workspace $workspaceMusic
+bindsym $mod+a workspace $workspaceXournal
 bindsym $mod+q workspace $workspaceEditor
 bindsym $mod+w workspace $workspaceTerminal
 bindsym $mod+e workspace $workspaceBrowser
@@ -155,6 +157,7 @@ bindsym $mod+Shift+e move container to workspace $workspaceBrowser
 
 #Assign classes(programs) to workspaces
 #(?i) => case insensitive
+assign [class="(?i)com.github.xournalpp.xournalpp"] $workspaceXournal
 assign [class="(?i)subl3"] $workspaceEditor
 assign [class="(?i)code"]  $workspaceEditor
 # assign [class="Brave-browser"] $workspaceBrowser
@@ -184,14 +187,15 @@ bindsym $mod+Shift+apostrophe move workspace to output right
 
 
 #======================== SCRATCHPAD ==============================
-exec --no-startup-id speedcrunch -title calculator
-exec --no-startup-id gedit --name scratchnotebook --class scratchnotebook
+exec --no-startup-id speedcrunch -title pocket-calculator
+# exec --no-startup-id xournalpp ~/.local/share/scratchpad/scratchpad.xopp --name scratchnotebook --class scratchnotebook
+# exec --no-startup-id gedit --name scratchnotebook --class scratchnotebook
 
-for_window [title="calculator"] move scratchpad
-for_window [class="scratchnotebook"] move scratchpad
+for_window [title="pocket-calculator"] move scratchpad
+# for_window [class="scratchnotebook"] move scratchpad
 
-bindsym $mod+Shift+a [title="calculator"] scratchpad show
-bindsym $mod+Shift+Return [class="scratchnotebook"] scratchpad show
+bindsym $mod+Shift+a [title="pocket-calculator"] scratchpad show
+# bindsym $mod+a [class="scratchnotebook"] scratchpad show
 
 
 # ======================= STATUS BAR ==============================
@@ -220,7 +224,7 @@ bar {
 		#class             border    background text
         inactive_workspace #151722d0 #151722d0  #aaaaaa
         focused_workspace  #171722d9 #171722d9  #00c8e6
-        urgent_workspace   #171722d9 #171722d9  #aebde34 
+        urgent_workspace   #171722d9 #171722f5  #c9691a 
     }
 }
 
@@ -301,13 +305,13 @@ smart_borders on
 
 
 #========================= Modes ==============================
-# Open Programs
-set $mode_launcher Launch: [f]irefox, [s]potify, gnu[c]ash, [t]hunar
+# Program Laucher
+set $mode_launcher Launch: [f]irefox, [s]potify, gnu[c]ash, [x]ournal, [t]hunar
 mode "$mode_launcher" {
 	bindsym f exec firefox
-	bindsym b exec brave
 	bindsym s exec spotify
 	bindsym c exec gnucash
+	bindsym x exec xournalpp
 	bindsym t exec thunar
 
 	bindsym Escape mode "default"
@@ -390,9 +394,9 @@ bindsym $mod+Pause exec lockscreen blur
 
 #====================== i3-master-stack ==========================
 exec --no-startup-id  $HOME/.config/i3/i3-master-stack/i3_master
-bindsym $mod+n nop swap master 
-bindsym $mod+Shift+n nop go master 
+bindsym $mod+n nop go master 
 bindsym $mod+h nop go master 
+bindsym $mod+Shift+n nop swap master 
 bindsym $mod+Shift+h nop swap master 
 
 # enable/disable master layout in current workspace
