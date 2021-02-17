@@ -13,7 +13,8 @@ limiar_warn=50;
 limiar_crit=85;
 
 #Acha cpu disponível
-idle=$(mpstat | awk '/all/ {print $12}')
+# idle=$(mpstat | awk '/all/ {print $12}')
+idle=$(mpstat 1 1 | awk '/Average/ {print $12}')
 
 #Calcula cpu usado
 cpu_usage=$(echo "100.0 - $idle" | bc)
