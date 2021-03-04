@@ -1,3 +1,14 @@
+# FISH shell startup commands
+
+# Set up path
+set tmp (du "$HOME/.local/bin/" | cut -f2 | paste -sd ':'); set PATH "$PATH:$tmp"
+
+# Default programs
+export EDITOR="subl3"
+export TERMINAL="st"
+export BROWSER="firefox"
+export READER="zathura"
+
 
 # Aliases and abbriviations
 if test -e ~/.config/fish/fish_aliases
@@ -18,10 +29,6 @@ bind \b 		backward-kill-word	#Ctrl-Backspace
 #Dica: execute no terminal fish_key_reader para encontrar o símbolo de cada key.
 
 
-#Set vim as default editor
-set EDITOR vim
-
-
 #Moves dot files to .config
 set XDG_CONFIG_HOME "$HOME"/.config
 
@@ -33,3 +40,9 @@ set JUPYTER_CONFIG_DIR "$XDG_CONFIG_HOME"/jupyter
 set LESSHISTFILE -
 set NPM_CONFIG_USERCONFIG $XDG_CONFIG_HOME/npm/npmrc
 set XINITRC "$XDG_CONFIG_HOME"/X11/xinitrc
+
+
+# Start graphical environment in tty1
+if pacman -Qs libxft-bgra >/dev/null 2>&1
+	test (tty) = "/dev/tty1" && ! pidof Xorg >/dev/null 2>&1 && exec startx
+end
