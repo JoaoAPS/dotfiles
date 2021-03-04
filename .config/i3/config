@@ -15,7 +15,7 @@ floating_modifier $mod
 
 #========================== Key Bindings ===============================
 # terminal
-bindsym $mod+Return exec st -e fish
+bindsym $mod+Return exec termite
 
 # kill focused window
 bindsym $mod+Tab kill
@@ -359,7 +359,7 @@ bindsym $mod+m focus floating; mode "moveit"
 #========================= Startup ============================
 #Startup Programs
 exec firefox
-exec --no-startup-id i3-msg 'workspace $workspaceTerminal; exec st -e fish'
+exec --no-startup-id i3-msg 'workspace $workspaceTerminal; exec termite'
 
 # The following are all done by .xprofile on startx
 # exec picom -D 3 -i 0.9 -m 0.9
