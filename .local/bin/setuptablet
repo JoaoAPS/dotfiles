@@ -1,0 +1,8 @@
+#! /bin/sh
+
+# Map the drawing tablet to the first monitor only
+
+PRIMARY_MONITOR=$(xrandr --listmonitors | grep -e "^ 0" | awk '{print $NF}')
+TABLET_ID=$(xinput list | awk '/Pen/ {print $(NF-3)}' | sed 's/id=//')
+
+xinput map-to-output $TABLET_ID $PRIMARY_MONITOR
