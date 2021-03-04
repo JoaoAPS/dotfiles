@@ -1,0 +1,65 @@
+#!/bin/zsh
+
+# Navegation
+alias ..='cd ..'
+alias ...='cd ../..'
+alias ....='cd ../../..'
+
+# ls
+alias la='ls -a'
+alias lt='ls -alt'
+
+# ssh
+alias hoggar='ssh -X -i ~/.ssh/hoggar paludo@hoggar.fisica.ufpr.br'
+alias mhoggar='sshfs -o allow_other -o IdentityFile=/home/nanni/.ssh/hoggar paludo@hoggar.fisica.ufpr.br:/home/jobs/paludo /home/nanni/pesquisa/hoggar'
+alias umhoggar='fusermount -z -u /home/nanni/pesquisa/hoggar'
+
+# My programs
+alias RU='$HOME/projects/dev/marcadorRU/marcadorRU.exe'
+alias acoes='ipython -i "$HOME/projects/dev/pyacoes/launch.py"'
+
+# Git
+abbr --quiet --force g='git'
+abbr --quiet --force ga='git add'
+abbr --quiet --force gs='git status'
+abbr --quiet --force gc='git commit -m'
+abbr --quiet --force gd='git diff'
+abbr --quiet --force gcl='git clone'
+abbr --quiet --force gco='git checkout'
+abbr --quiet --force gpl='git pull'
+abbr --quiet --force gps='git push'
+
+# Shutdown
+abbr --quiet --force sdn='sudo shutdown -h now'
+abbr --quiet --force srn='sudo shutdown -r now'
+
+# Docker
+abbr --quiet --force dc='docker-compose'
+abbr --quiet --force dcr='docker-compose run --rm'
+abbr --quiet --force dcu='docker-compose up'
+abbr --quiet --force dcd='docker-compose down'
+
+# Pacman
+abbr --quiet --force pc='sudo pacman'
+abbr --quiet --force pi='sudo pacman -Syu'
+abbr --quiet --force pr='sudo pacman -Rcns'
+
+# Facilitadores de memorização
+alias html2pdf='wkhtmltopdf'
+alias autoopen='xdg-open'
+alias weather='curl wttr.in'
+alias volumemixer='pulsemixer'
+
+# Ajustes
+alias vi vim
+command -v subl &> /dev/null || alias subl="subl3"
+
+# Custom functions
+function cs() {
+	cd $1
+	ls
+}
+
+function za() {
+	zathura $@&
+}
