@@ -8,6 +8,7 @@
 		"AdvancedNewFile",
 		"Anaconda",
 		"Babel",
+		"Djaneiro",
 		"Dockerfile Syntax Highlighting",
 		"EasyClangComplete",
 		"Emmet",
@@ -24,7 +25,9 @@
 		"Monokai - Spacegray",
 		"Monokai Extended",
 		"Package Control",
+		"requirementstxt",
 		"Seti_UI",
-		"SideBarEnhancements"
+		"SideBarEnhancements",
+		"Vue Syntax Highlight"
 	]
 }

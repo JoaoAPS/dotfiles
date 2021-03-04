@@ -32,6 +32,7 @@ bind \b 		backward-kill-word	#Ctrl-Backspace
 #Moves dot files to .config
 set XDG_CONFIG_HOME "$HOME"/.config
 
+set ZDOTDIR "$HOME/.config/zsh"
 set GNUPGHOME "$XDG_DATA_HOME"/gnupg
 set GTK2_RC_FILES "$XDG_CONFIG_HOME"/gtk-2.0/gtkrc
 set KDEHOME "$XDG_CONFIG_HOME"/kde

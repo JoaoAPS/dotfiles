@@ -26,6 +26,7 @@ application/x-extension-shtml=firefox.desktop
 application/xhtml+xml=firefox.desktop
 application/x-extension-xhtml=firefox.desktop
 application/x-extension-xht=firefox.desktop
+x-scheme-handler/gitkraken=GitKraken.desktop
 
 [Added Associations]
 x-scheme-handler/http=firefox.desktop;
@@ -39,3 +40,10 @@ application/x-extension-shtml=firefox.desktop;
 application/xhtml+xml=firefox.desktop;
 application/x-extension-xhtml=firefox.desktop;
 application/x-extension-xht=firefox.desktop;
+text/plain=sublime_text_3.desktop;
+text/x-bibtex=sublime_text_3.desktop;
+application/json=sublime_text_3.desktop;
+application/x-bibtex=sublime_text_3.desktop;
+application/nbib=sublime_text_3.desktop;
+application/x-research-info-systems=sublime_text_3.desktop;
+application/pdf=okularApplication_pdf.desktop;

@@ -15,7 +15,7 @@
   "editor.tabSize": 4,
   "breadcrumbs.enabled": false,
   "window.menuBarVisibility": "toggle",
-  "workbench.activityBar.visible": false,
+  "workbench.activityBar.visible": true,
   "workbench.statusBar.visible": true,
   "editor.dragAndDrop": false,
   "editor.roundedSelection": false,
