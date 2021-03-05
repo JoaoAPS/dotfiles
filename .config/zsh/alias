@@ -51,7 +51,7 @@ alias weather='curl wttr.in'
 alias volumemixer='pulsemixer'
 
 # Ajustes
-alias vi vim
+alias vi="vim"
 command -v subl &> /dev/null || alias subl="subl3"
 
 # Custom functions
