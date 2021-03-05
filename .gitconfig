@@ -1,0 +1,7 @@
+[user]
+	email = jas.paludo@gmail.com
+	name = João Paludo
+[pull]
+	rebase = false
+[init]
+	defaultBranch = main
