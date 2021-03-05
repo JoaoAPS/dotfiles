@@ -1,0 +1,10 @@
+# Avoid weird recusrsive stuff
+.dotfiles
+
+.Xauthority
+.audacity-data/
+.bash_history
+.cache/
+.python_history
+.zsh_history
+

@@ -63,3 +63,6 @@ function cs() {
 function za() {
 	zathura $@&
 }
+
+# Dotfiles git repo
+alias config='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
