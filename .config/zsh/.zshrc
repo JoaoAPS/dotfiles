@@ -16,8 +16,11 @@ HISTFILE=~/.config/zsh/history
 [ -f "${ZDOTDIR:-${XDG_CONFIG_HOME:-$HOME/.config}/zsh}/alias" ] && source "${ZDOTDIR:-${XDG_CONFIG_HOME:-$HOME/.config}/zsh}/alias"
 [ -f "${ZDOTDIR:-${XDG_CONFIG_HOME:-$HOME/.config}/zsh}/shortcutrc" ] && source "${ZDOTDIR:-${XDG_CONFIG_HOME:-$HOME/.config}/zsh}/shortcutrc"
 
-# Set Ctrl+Backspace
-bindkey '^H' backward-kill-word
+# Key-bindings
+bindkey '^H' backward-kill-word                # Ctrl+Backspace
+bindkey -s '^[Oo' '/'                          # KeyPad /
+bindkey -s '^[Oj' '*'                          # KeyPad *
+bindkey '^[OM' _abbr_widget_expand_and_accept  # KeyPad Enter
 
 
 # Syntax highlighting dos comandos
