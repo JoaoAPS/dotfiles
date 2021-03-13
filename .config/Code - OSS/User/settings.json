@@ -78,7 +78,6 @@
     "<C-d>": false,
     "<C-c>": false
   },
-  "window.zoomLevel": -1,
   "explorer.confirmDragAndDrop": false,
   "liveSassCompile.settings.formats": [
     {
@@ -89,5 +88,6 @@
     }
   ],
   "liveServer.settings.donotShowInfoMsg": true,
-  "workbench.colorTheme": "An Old Hope Italic"
+  "workbench.colorTheme": "An Old Hope Italic",
+  "window.zoomLevel": -1
 }
