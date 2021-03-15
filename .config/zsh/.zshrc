@@ -16,10 +16,14 @@ HISTFILE=~/.config/zsh/history
 [ -f "${ZDOTDIR:-${XDG_CONFIG_HOME:-$HOME/.config}/zsh}/alias" ] && source "${ZDOTDIR:-${XDG_CONFIG_HOME:-$HOME/.config}/zsh}/alias"
 [ -f "${ZDOTDIR:-${XDG_CONFIG_HOME:-$HOME/.config}/zsh}/shortcutrc" ] && source "${ZDOTDIR:-${XDG_CONFIG_HOME:-$HOME/.config}/zsh}/shortcutrc"
 
-# Key-bindings
+# Key-bindings (Ctrl+v - `key` para descobrir o código de `key`)
 bindkey '^H' backward-kill-word                # Ctrl+Backspace
 bindkey -s '^[Oo' '/'                          # KeyPad /
 bindkey -s '^[Oj' '*'                          # KeyPad *
+bindkey -s '^[Om' '-'                          # KeyPad -
+bindkey -s '^[Ok' '+'                          # KeyPad +
+bindkey -s '^[Ok' '+'                          # KeyPad +
+bindkey '^[OM' _abbr_widget_expand_and_accept  # KeyPad Enter
 bindkey '^[OM' _abbr_widget_expand_and_accept  # KeyPad Enter
 
 
