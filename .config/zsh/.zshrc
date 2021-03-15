@@ -27,6 +27,11 @@ bindkey '^[OM' _abbr_widget_expand_and_accept  # KeyPad Enter
 bindkey '^[OM' _abbr_widget_expand_and_accept  # KeyPad Enter
 
 
+# Define as cores do ls
+# Referência: https://gist.github.com/thomd/7667642#ls_colors
+export LS_COLORS="$(cat $XDG_CONFIG_HOME/ls_colors)"
+
+
 # Syntax highlighting dos comandos
 # Para as opções disponiver ver https://github.com/zsh-users/zsh-syntax-highlighting/blob/master/docs/highlighters/main.md
 # Para definir a cor, escreva `fg=n` onde n é o número da cor segundo definido na configuração do termite

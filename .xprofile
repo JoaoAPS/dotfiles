@@ -26,4 +26,3 @@ setuptablet # Map drawing tablet to first monitor only
 # xset s noblank &
 # xset -dpms&
 # xset s off -dpms
-
