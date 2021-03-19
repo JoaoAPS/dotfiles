@@ -1,6 +1,7 @@
 {
   "files.associations": {
-    "*.js": "javascriptreact"
+    "*.js": "javascriptreact",
+    "*.md": "markdown"
   },
 
   "files.exclude": {
