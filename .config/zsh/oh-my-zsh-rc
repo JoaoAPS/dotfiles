@@ -2,7 +2,7 @@
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-export ZSH="/home/nanni/.config/zsh/oh-my-zsh"
+export ZSH="$HOME/.config/zsh/oh-my-zsh"
 
 # files in $ZSH/custom/themes/ or $ZSH/themes/ ; Can be set to "random"
 ZSH_THEME="simple"
