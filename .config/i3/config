@@ -15,7 +15,7 @@ floating_modifier $mod
 
 #========================== Key Bindings ===============================
 # terminal
-bindsym $mod+Return exec termite
+bindsym $mod+Return exec alacritty
 
 # kill focused window
 bindsym $mod+Tab kill
@@ -359,18 +359,7 @@ bindsym $mod+m focus floating; mode "moveit"
 #========================= Startup ============================
 #Startup Programs
 exec firefox
-exec --no-startup-id i3-msg 'workspace $workspaceTerminal; exec termite'
-
-# The following are all done by .xprofile on startx
-# exec picom -D 3 -i 0.9 -m 0.9
-# exec --no-startup-id redshift -l -25.5:-50 -t 5500:3000
-# exec --no-startup-id numlockx off
-# exec --no-startup-id dunst
-# exec --no-startup-id unclutter -idle 3
-# # Desabilita screensaver
-# exec xset s off
-# exec xset s noblank
-# exec xset -dpms
+exec --no-startup-id i3-msg 'workspace $workspaceTerminal; exec alacritty'
 
 
 #========================= Prompts ============================
