@@ -264,6 +264,7 @@ bar {
 
     # Select monitor the bar will appear
     output VGA1
+    output DVI-D-0
 
 	height 25
 	position top
