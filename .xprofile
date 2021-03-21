@@ -5,19 +5,14 @@
 
 # Fix Gnome Apps Slow  Start due to failing services
 # Add this when you include flatpak in your system
-dbus-update-activation-environment --systemd DBUS_SESSION_BUS_ADDRESS DISPLAY XAUTHORITY
+# dbus-update-activation-environment --systemd DBUS_SESSION_BUS_ADDRESS DISPLAY XAUTHORITY
 
-#Se há um monitor conectado ao notebook, coloca ele na direita do note
-[ $(xrandr --listmonitors | head -n 1 | awk '{print $2}') -eq 2 ] && xrandr --output LVDS1 --auto --output VGA1 --auto --right-of LVDS1
+# (Está sendo eecutado no i3) #Se há um monitor conectado ao notebook, coloca ele na direita do note
+# [ $(xrandr --listmonitors | head -n 1 | awk '{print $2}') -eq 2 ] && xrandr --output LVDS1 --auto --output VGA1 --auto --right-of LVDS1
 
-remaps &		# run the remaps script, switching caps/esc and more; check it for more info
-setbg "$HOME/.local/share/wallpapers" "no" &			# set the background with the `setbg` script
 #xrdb ${XDG_CONFIG_HOME:-$HOME/.config}/Xresources &	# Uncomment to use Xresources colors/settings on startup
-picom -D 3 -m 0.95 -i 0.95 & # picom for transparency
-dunst &		# dunst for notifications
-xset r rate 300 50 &	# Speed xrate up
+
 unclutter &		# Remove mouse when idle
-redshift -l 25.5:-50 -t 5500:3000 & # Block blue light after nightfall
 numlockx off & # Turn off numlock
 setuptablet # Map drawing tablet to first monitor only
 
