@@ -6,6 +6,28 @@
     "when": "textInputFocus"
   },
   
+  // Camel Case Navigation
+  {
+    "key": "ctrl+right",
+    "command": "cursorWordPartRight",
+    "when": "editorTextFocus"
+  },
+  {
+    "key": "ctrl+shift+right",
+    "command": "cursorWordPartRightSelect",
+    "when": "editorTextFocus"
+  },
+  {
+    "key": "ctrl+left",
+    "command": "cursorWordPartLeft",
+    "when": "editorTextFocus"
+  },
+  {
+    "key": "ctrl+shift+left",
+    "command": "cursorWordPartLeftSelect",
+    "when": "editorTextFocus"
+  }
+  
   //Center editor
   {
     "key": "ctrl+k ctrl+c",
@@ -15,5 +37,9 @@
   {
     "key": "ctrl+alt+n",
     "command": "explorer.newFile"
+  },
+  {
+    "key": "ctrl+alt+enter",
+    "command": "python.execInTerminal"
   },
 ]

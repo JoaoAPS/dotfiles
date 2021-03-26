@@ -25,7 +25,7 @@
   "editor.wordSeparators": "`~!@#$%^&*()-=+[{]}\\|;:'\",.<>/?_",
   "editor.wordWrapColumn": 120,
   "editor.cursorBlinking": "solid",
-  "editor.cursorWidth": 3,
+  "editor.cursorWidth": 2,
   "editor.quickSuggestionsDelay": 100,
   "workbench.enableExperiments": false,
   
@@ -44,6 +44,23 @@
     "editor.formatOnSave": true,
     "editor.tabSize": 2,
   },
+  "[python]": {
+    "editor.formatOnSave": true,
+    "editor.tabSize": 4,
+    "editor.rulers": [79]
+  },
+  
+  //Python
+  "python.linting.flake8Enabled": true,
+  "python.formatting.provider": "autopep8",
+  "python.linting.pylintArgs": [
+    "--load-plugins=pylint_django",
+    "--disable=django-not-configured",
+    "--django-settings-module=<mainapp>.settings",
+    // "--disable=all",
+    "--enable=F,E,unreachable,duplicate-key,unnecessary-semicolon,global-variable-not-assigned,unused-variable,binary-op-exception,bad-format-string,anomalous-backslash-in-string,bad-open-mode",
+  ],
+  "python.linting.pydocstyleArgs": ["--ignore=D400"],
   
   //Prettier
   "prettier.semi": false,
@@ -51,6 +68,7 @@
   "prettier.arrowParens": "avoid",
   "prettier.tabWidth": 2,
   "workbench.startupEditor": "newUntitledFile",
+  
   //Emmet
   "emmet.syntaxProfiles": { "javascript": "jsx" },
   "emmet.includeLanguages": {
@@ -89,6 +107,13 @@
     }
   ],
   "liveServer.settings.donotShowInfoMsg": true,
+  "explorer.confirmDelete": false,
   "workbench.colorTheme": "An Old Hope Italic",
-  "window.zoomLevel": -1
+  "workbench.editorAssociations": [
+    {
+      "viewType": "jupyter.notebook.ipynb",
+      "filenamePattern": "*.ipynb"
+    }
+  ],
+  "python.testing.pytestEnabled": true
 }
