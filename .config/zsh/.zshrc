@@ -2,6 +2,7 @@
 autoload -U colors && colors	# Load colors
 setopt autocd		# Automatically cd into typed directory.
 stty stop undef		# Disable ctrl-s to freeze terminal.
+setopt no_auto_remove_slash  # Keep the traling slash after directory path
 # PS1="%F{4}%n %F{2}%~ %f> " # Prompt, now is set by oh-my-zsh
 
 # History in cache directory:
