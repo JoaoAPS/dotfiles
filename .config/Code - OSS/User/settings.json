@@ -51,16 +51,17 @@
   },
   
   //Python
-  "python.linting.flake8Enabled": true,
-  "python.formatting.provider": "autopep8",
-  "python.linting.pylintArgs": [
-    "--load-plugins=pylint_django",
-    "--disable=django-not-configured",
-    "--django-settings-module=<mainapp>.settings",
-    // "--disable=all",
-    "--enable=F,E,unreachable,duplicate-key,unnecessary-semicolon,global-variable-not-assigned,unused-variable,binary-op-exception,bad-format-string,anomalous-backslash-in-string,bad-open-mode",
-  ],
-  "python.linting.pydocstyleArgs": ["--ignore=D400"],
+  // "python.linting.flake8Enabled": true,
+  // "python.formatting.provider": "autopep8",
+  // "python.testing.pytestEnabled": true,
+  // "python.linting.pylintArgs": [
+  //   "--load-plugins=pylint_django",
+  //   "--disable=django-not-configured",
+  //   "--django-settings-module=<mainapp>.settings",
+  //   // "--disable=all",
+  //   "--enable=F,E,unreachable,duplicate-key,unnecessary-semicolon,global-variable-not-assigned,unused-variable,binary-op-exception,bad-format-string,anomalous-backslash-in-string,bad-open-mode",
+  // ],
+  // "python.linting.pydocstyleArgs": ["--ignore=D400"],
   
   //Prettier
   "prettier.semi": false,
@@ -74,6 +75,9 @@
   "emmet.includeLanguages": {
     "javascript": "javascriptreact"
   },
+  
+  // Markdown all-in-one
+  "markdown.extension.list.indentationSize": "inherit",
 
   //Vim
   "vim.useCtrlKeys": false,
@@ -115,5 +119,4 @@
       "filenamePattern": "*.ipynb"
     }
   ],
-  "python.testing.pytestEnabled": true
 }
