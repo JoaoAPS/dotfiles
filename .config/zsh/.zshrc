@@ -10,6 +10,9 @@ HISTSIZE=10000
 SAVEHIST=10000
 HISTFILE=~/.config/zsh/history
 
+# Add yarn to PATH
+export PATH="$PATH:$(yarn global bin)"
+
 # Load oh-my-zsh configs
 [ -f "${ZDOTDIR:-${XDG_CONFIG_HOME:-$HOME/.config}/zsh}/oh-my-zsh-rc" ] && source "${ZDOTDIR:-${XDG_CONFIG_HOME:-$HOME/.config}/zsh}/oh-my-zsh-rc"
 
