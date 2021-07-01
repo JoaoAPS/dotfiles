@@ -1,3 +1,6 @@
 #!/bin/sh
 
-dconf dump / > my-current-settings.ini
+outfile="my-current-settings.ini"
+[ $# -gt 0 ] && outfile=$1
+
+dconf dump / > $outfile
