@@ -1,0 +1,28 @@
+{
+  "name": "doto",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "quick_build": "node quick-build.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/declantyson/doto.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/declantyson/doto/issues"
+  },
+  "homepage": "https://github.com/declantyson/doto#readme",
+  "devDependencies": {},
+  "dependencies": {
+    "fs": "0.0.1-security",
+    "jsdom": "^11.10.0",
+    "request": "^2.85.0",
+    "videofy-plus": "0.0.3"
+  }
+}

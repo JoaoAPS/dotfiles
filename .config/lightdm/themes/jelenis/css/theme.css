@@ -1,0 +1,62 @@
+/* Simple example of css used to stylize the login screen */
+* {
+  /* webkit2 is very slow, this is supposed to speed up animations */
+  backface-visibility: hidden;
+}
+body {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+  color: white;
+  background-color: #34495e;
+  /* background: radial-gradient(center, ellipse cover, #455a64 10%, #263238 100%); */
+  overflow: hidden;
+}
+main {
+  flex: 1 0 auto;
+}
+input {
+  color: white;
+}
+.caret {
+  fill: grey !important;
+}
+.power-button {
+  fill: #bdc3c7;
+}
+.power-button:hover {
+  fill: #ecf0f1;
+}
+.power-button:active {
+  fill: white;
+  transform: scale(0.95);
+}
+div#console {
+  z-index: 9999;
+  position: absolute;
+  top: 10px;
+}
+div#console .terminal {
+  overflow-y: scroll;
+  background-color: rgba(0,0,0,0.8);
+  font-size: 14pt;
+  color: white;
+  height: 30vh;
+  width: 85vw;
+  resize: both;
+}
+div#console .terminal text {
+  display: block;
+  padding: 0;
+  margin: 0;
+}
+.welcome-text {
+  font-size: 3vh;
+  font-weight: lighter;
+}
+.logo-ubuntu {
+  height: 10vh;
+}
+.logo-arch {
+  height: 15vh;
+}
