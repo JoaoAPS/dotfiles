@@ -13,8 +13,8 @@
 #xrdb ${XDG_CONFIG_HOME:-$HOME/.config}/Xresources &	# Uncomment to use Xresources colors/settings on startup
 
 unclutter &		# Remove mouse when idle
-numlockx off & # Turn off numlock
-setuptablet # Map drawing tablet to first monitor only
+numlockx off &          # Turn off numlock
+setuptablet             # Map drawing tablet to first monitor only
 
 # Desabilita screensaver
 # xset s off * &

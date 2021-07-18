@@ -5,4 +5,4 @@
 PRIMARY_MONITOR=$(xrandr --listmonitors | grep -e "^ 0" | awk '{print $NF}')
 TABLET_ID=$(xinput list | awk '/Pen/ {print $(NF-3)}' | sed 's/id=//')
 
-xinput map-to-output $TABLET_ID $PRIMARY_MONITOR
+[ -z $TABLET_ID ] || xinput map-to-output $TABLET_ID $PRIMARY_MONITOR
