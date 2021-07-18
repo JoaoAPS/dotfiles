@@ -1,0 +1,4 @@
+#!/bin/sh
+
+rofi -modi 'Powermenu:~/.config/rofi/scripts/rofi-powermenu.sh' -show Powermenu -theme powermenu
+
