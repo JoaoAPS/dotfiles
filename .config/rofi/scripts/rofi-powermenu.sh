@@ -12,7 +12,7 @@ else
     if [ "$1" = "Shutdown" ]; then
         sudo shutdown -h now
     elif [ "$1" = "Logout" ]; then
-        i3-msg exit
+        i3-msg exit || gnome-session-quit --logout --no-prompt
     elif [ "$1" = "Reboot" ]; then
         # sudo reboot
         sudo shutdown -r now
