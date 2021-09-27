@@ -1,9 +1,5 @@
 #!/bin/sh
 
-# This script is called on startup to remap keys.
-# Increase key speed via a rate change
-# xset r rate 300 50
-
 # Map CapsLock to another key (full list in https://gist.github.com/jatcwang/ae3b7019f219b8cdc6798329108c9aee)
 setxkbmap -option caps:escape
 # setxkbmap -option caps:super

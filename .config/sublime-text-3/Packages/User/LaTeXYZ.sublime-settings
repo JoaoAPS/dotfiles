@@ -1,6 +1,0 @@
-{
-    // extract `\newcommand{}` when previewing math
-    "auto_set_preview_math_template_preamble": true,
-    // enable latex quotations
-    "use_latex_quotes": false,
-}
