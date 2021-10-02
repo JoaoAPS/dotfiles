@@ -29,6 +29,7 @@ fi
 
 # ~/ Muda dir de config para dentro de .config:
 export XDG_CONFIG_HOME="$HOME/.config"
+export XDG_CONFIG_USER_HOME="$HOME/.config"
 export XDG_DATA_HOME="$HOME/.local/share"
 export XDG_CACHE_HOME="$HOME/.cache"
 #export XAUTHORITY="$XDG_RUNTIME_DIR/Xauthority" # This line will break some DMs.
@@ -51,14 +52,16 @@ export UNISON="${XDG_DATA_HOME:-$HOME/.local/share}/unison"
 export HISTFILE="${XDG_DATA_HOME:-$HOME/.local/share}/history"
 
 
-xset r rate 300 50 &    # Increase key speed via a rate change
-unclutter &		# Remove mouse when idle
-# remaps 2> /dev/null &   # Remapeia teclas do teclado (atualmente faço isso no gnome tweaks)
-# numlockx off &          # Turn off numlock
-# setuptablet &           # Map drawing tablet to first monitor only
+
+sh -c 'sleep 3 && xset r rate 300 50' &  # Increase key speed via a rate change
+unclutter -idle 3 &	      # Remove mouse when idle
+# remaps 2> /dev/null &         # Remapeia teclas do teclado (atualmente faço isso no gnome tweaks)
+# numlockx off &                # Turn off numlock
+# setuptablet &                 # Map drawing tablet to first monitor only
 
 # Desabilita screensaver
 # xset s off * &
 # xset s noblank &
 # xset -dpms&
 # xset s off -dpms
+
