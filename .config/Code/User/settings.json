@@ -35,14 +35,15 @@
     "editor.tabSize": 2,
   },
   "[javascript]": {
-    "editor.formatOnSave": true
+    "editor.formatOnSave": true,
+    "editor.tabSize": 2,
   },
   "[html]": {
     "editor.tabSize": 2
   },
   "[vue]": {
     "editor.formatOnSave": true,
-    "editor.tabSize": 2,
+    "editor.tabSize": 4,
   },
   "[python]": {
     "editor.formatOnSave": true,
@@ -112,11 +113,9 @@
   ],
   "liveServer.settings.donotShowInfoMsg": true,
   "explorer.confirmDelete": false,
-  "workbench.colorTheme": "An Old Hope Italic",
-  "workbench.editorAssociations": [
-    {
-      "viewType": "jupyter.notebook.ipynb",
-      "filenamePattern": "*.ipynb"
-    }
-  ],
+  "workbench.colorTheme": "Monokai Vibrant",
+  "workbench.editorAssociations": {
+    "*.ipynb": "jupyter.notebook.ipynb"
+  },
+  "workbench.iconTheme": "vscode-icons",
 }

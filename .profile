@@ -55,6 +55,7 @@ export HISTFILE="${XDG_DATA_HOME:-$HOME/.local/share}/history"
 
 sh -c 'sleep 3 && xset r rate 300 50' &  # Increase key speed via a rate change
 unclutter -idle 3 &	      # Remove mouse when idle
+redshift -t 6500:4000 -l 25.42778:-49.27306 &
 # remaps 2> /dev/null &         # Remapeia teclas do teclado (atualmente faço isso no gnome tweaks)
 # numlockx off &                # Turn off numlock
 # setuptablet &                 # Map drawing tablet to first monitor only

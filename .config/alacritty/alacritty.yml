@@ -51,6 +51,8 @@ window:
     x: 5
     y: 5
 
+  opacity: 0.9
+
   # Spread additional padding evenly around the terminal content.
   #dynamic_padding: false
 
@@ -162,7 +164,6 @@ font:
 # If `true`, bold text is drawn using the bright color variants.
 #draw_bold_text_with_bright_colors: false
 
-background_opacity: 0.9
 
 # Colors
 colors:
