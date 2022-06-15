@@ -1,6 +1,6 @@
 {
   "files.associations": {
-    "*.js": "javascriptreact",
+    // "*.js": "javascriptreact",
     "*.md": "markdown"
   },
 
@@ -35,6 +35,14 @@
     "editor.tabSize": 2,
   },
   "[javascript]": {
+    "editor.formatOnSave": true,
+    "editor.tabSize": 2,
+  },
+  "[typescriptreact]": {
+    "editor.formatOnSave": true,
+    "editor.tabSize": 2,
+  },
+  "[typescript]": {
     "editor.formatOnSave": true,
     "editor.tabSize": 2,
   },
@@ -118,4 +126,6 @@
     "*.ipynb": "jupyter.notebook.ipynb"
   },
   "workbench.iconTheme": "vscode-icons",
+  "git.confirmSync": false,
+  "security.workspace.trust.untrustedFiles": "open",
 }
