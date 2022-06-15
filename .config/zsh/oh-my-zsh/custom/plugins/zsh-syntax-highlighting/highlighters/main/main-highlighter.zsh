@@ -349,6 +349,7 @@ _zsh_highlight_highlighter_main_paint()
     'noglob' ''
     # 'time' and 'nocorrect' shouldn't be added here; they're reserved words, not precommands.
 
+    # miscellaneous commands
     'doas' aCu:Lns # as of OpenBSD's doas(1) dated September 4, 2016
     'nice' n: # as of current POSIX spec
     'pkexec' '' # doesn't take short options; immune to #121 because it's usually not passed --option flags
@@ -362,21 +363,17 @@ _zsh_highlight_highlighter_main_paint()
     'env' u:i
     'ionice' cn:t:pPu # util-linux 2.33.1-0.1
     'strace' IbeaosXPpEuOS:ACdfhikqrtTvVxyDc # strace 4.26-0.2
-
-    # As of OpenSSH 8.1p1
-    'ssh-agent' aEPt:csDd:k
-    # suckless-tools v44
-    # Argumentless flags that can't be followed by a command: -v
-    'tabbed' gnprtTuU:cdfhs
-
-    # moreutils 0.62-1
-    'chronic' :ev
-    'ifne' :n
-
+    'proxychains' q:f # proxychains 4.4.0
+    'ssh-agent' aEPt:csDd:k # As of OpenSSH 8.1p1
+    'tabbed' gnprtTuU:cdfhs:v # suckless-tools v44
+    'chronic' :ev # moreutils 0.62-1
+    'ifne' :n # moreutils 0.62-1
+    'grc' :se # grc - a "generic colouriser" (that's their spelling, not mine)
   )
   # Commands that would need to skip one positional argument:
   #    flock
   #    ssh
+  #    _wanted (skip two)
 
   if [[ $zsyh_user_options[ignorebraces] == on || ${zsyh_user_options[ignoreclosebraces]:-off} == on ]]; then
     local right_brace_is_recognised_everywhere=false
@@ -476,7 +473,11 @@ _zsh_highlight_main_highlighter__try_expand_parameter()
             ;;
           (*)
             # scalar, presumably
-            words=( ${(P)MATCH} )
+            if [[ $zsyh_user_options[shwordsplit] == on ]]; then
+              words=( ${(P)=MATCH} )
+            else
+              words=( ${(P)MATCH} )
+            fi
             ;;
         esac
         reply=( "${words[@]}" )
@@ -601,16 +602,19 @@ _zsh_highlight_main_highlighter_highlight_list()
       (( in_alias[1]-- ))
       # Remove leading 0 entries
       in_alias=($in_alias[$in_alias[(i)<1->],-1])
-      (){
-        local alias_name
-        for alias_name in ${(k)seen_alias[(R)<$#in_alias->]}; do
-          unset "seen_alias[$alias_name]"
-        done
-      }
       if (( $#in_alias == 0 )); then
         seen_alias=()
         # start_pos and end_pos are of the alias (previous $arg) here
         _zsh_highlight_main_add_region_highlight $start_pos $end_pos $alias_style
+      else
+        # We can't unset keys that contain special characters (] \ and some others).
+        # More details: https://www.zsh.org/workers/43269
+        (){
+          local alias_name
+          for alias_name in ${(k)seen_alias[(R)<$#in_alias->]}; do
+            seen_alias=("${(@kv)seen_alias[(I)^$alias_name]}")
+          done
+        }
       fi
     fi
     if (( in_param )); then
@@ -648,7 +652,7 @@ _zsh_highlight_main_highlighter_highlight_list()
 
     if (( $#in_alias == 0 && in_param == 0 )); then
       # Compute the new $start_pos and $end_pos, skipping over whitespace in $buf.
-      [[ "$proc_buf" = (#b)(#s)(([ $'\t']|[\\]$'\n')#)(?|)* ]]
+      [[ "$proc_buf" = (#b)(#s)(''([ $'\t']|[\\]$'\n')#)(?|)* ]]
       # The first, outer parenthesis
       integer offset="${#match[1]}"
       (( start_pos = end_pos + offset ))
@@ -736,7 +740,7 @@ _zsh_highlight_main_highlighter_highlight_list()
     # Analyse the current word.
     if _zsh_highlight_main__is_redirection $arg ; then
       if (( in_redirection == 1 )); then
-        # Two consecuive redirection operators is an error.
+        # Two consecutive redirection operators is an error.
         _zsh_highlight_main_add_region_highlight $start_pos $end_pos unknown-token
       else
         in_redirection=2
@@ -890,7 +894,9 @@ _zsh_highlight_main_highlighter_highlight_list()
         (){
           local alias_name
           for alias_name in ${(k)seen_alias[(R)<$#in_alias->]}; do
-            unset "seen_alias[$alias_name]"
+            # We can't unset keys that contain special characters (] \ and some others).
+            # More details: https://www.zsh.org/workers/43269
+            seen_alias=("${(@kv)seen_alias[(I)^$alias_name]}")
           done
         }
         if [[ $arg != '|' && $arg != '|&' ]]; then

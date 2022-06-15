@@ -5,8 +5,8 @@ zsh-syntax-highlighting [![Build Status][build-status-image]][build-status]
 
 *Requirements: zsh 4.3.11+.*
 
-[fish]: http://www.fishshell.com/
-[zsh]: http://www.zsh.org/
+[fish]: https://fishshell.com/
+[zsh]: https://www.zsh.org/
 
 This package provides syntax highlighting for the shell zsh.  It enables
 highlighting of commands whilst they are typed at a zsh prompt into an
@@ -73,7 +73,7 @@ enough information to allow computing the highlighting correctly.)
 
 See issues [#288][i288] and [#415][i415] for details.
 
-[zshzle-Character-Highlighting]: http://zsh.sourceforge.net/Doc/Release/Zsh-Line-Editor.html#Character-Highlighting
+[zshzle-Character-Highlighting]: https://zsh.sourceforge.io/Doc/Release/Zsh-Line-Editor.html#Character-Highlighting
 [i288]: https://github.com/zsh-users/zsh-syntax-highlighting/pull/288
 [i415]: https://github.com/zsh-users/zsh-syntax-highlighting/pull/415
 
