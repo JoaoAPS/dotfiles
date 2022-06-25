@@ -66,3 +66,5 @@ redshift -t 6500:4000 -l 25.42778:-49.27306 &
 # xset -dpms&
 # xset s off -dpms
 
+
+if [ -e /home/joaoaps/.nix-profile/etc/profile.d/nix.sh ]; then . /home/joaoaps/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
