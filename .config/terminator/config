@@ -7,6 +7,7 @@
   title_inactive_fg_color = "#ffffff"
   title_inactive_bg_color = "#241f31"
   inactive_color_offset = 0.75
+  enabled_plugins = ActivityWatch, LaunchpadBugURLHandler, LaunchpadCodeURLHandler, APTURLHandler
   suppress_multiple_term_dialog = True
   always_split_with_profile = True
 [keybindings]
@@ -19,7 +20,8 @@
   split_horiz = <Primary><Shift>j
   split_vert = <Primary><Shift>l
   close_term = <Primary>w
-  copy = <Primary><Shift>c
+  copy = <Alt>c
+  paste = <Alt>v
   page_up_half = <Primary><Alt>k
   page_down_half = <Primary><Alt>j
   line_up = <Shift><Alt>k
@@ -28,7 +30,7 @@
   group_all = ""
   group_tab = ""
   insert_number = <Primary>1
-  layout_launcher = <Primary>a
+  layout_launcher = <Primary><Shift>d
 [profiles]
   [[default]]
     visible_bell = True
@@ -40,6 +42,8 @@
     scrollbar_position = hidden
     scroll_on_output = True
     scrollback_infinite = True
+    palette = "#2e3436:#cc0000:#879a12:#c4a000:#3465a4:#75507b:#689d96:#deddda:#555753:#ef2929:#7ac31c:#fce94f:#729fcf:#ad7fa8:#31a89c:#f6f5f4"
+    bold_is_bright = True
   [[Titlebar]]
     background_darkness = 0.77
     background_type = transparent
@@ -49,6 +53,7 @@
     scrollbar_position = hidden
     scroll_on_output = True
     scrollback_infinite = True
+    palette = "#2e3436:#cc0000:#879a12:#c4a000:#3465a4:#75507b:#689d96:#deddda:#555753:#ef2929:#7ac31c:#fce94f:#729fcf:#ad7fa8:#31a89c:#f6f5f4"
   [[Minimalista]]
     visible_bell = True
     background_darkness = 0.77
@@ -60,6 +65,7 @@
     scrollbar_position = hidden
     scroll_on_output = True
     scrollback_infinite = True
+    palette = "#2e3436:#cc0000:#879a12:#c4a000:#3465a4:#75507b:#689d96:#deddda:#555753:#ef2929:#7ac31c:#fce94f:#729fcf:#ad7fa8:#31a89c:#f6f5f4"
 [layouts]
   [[default]]
     [[[child0]]]
